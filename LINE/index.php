@@ -169,7 +169,7 @@ foreach ($bot->parseEvents() as $event) {
 			error_log("被加入聊天室");
 			$messages = new MutiMessage();
 			$replyArr = Array(
-				$messages->text("大家好，我是豪傑娛樂老闆。"),
+				$messages->text("大家好，我是豪傑娛樂老闆的秘書。"),
 				$messages->sticker(1,2)
 			);
 			
@@ -186,7 +186,7 @@ foreach ($bot->parseEvents() as $event) {
 			error_log("被加入好友");
 			$messages = new MutiMessage();
 			$replyArr = Array(
-				$messages->text("你好哦，我是豪傑娛樂老闆。"),
+				$messages->text("你好哦，我是豪傑娛樂老闆的秘書。"),
 				$messages->sticker(4,631),
 				$messages->text("建議使用手機界面，可以更簡單的選取說明哦。")
 			);
@@ -207,7 +207,7 @@ foreach ($bot->parseEvents() as $event) {
 
 //這是基本判斷式
 function parseInput ($inputStr){
-	$replyKeyword = '老闆';
+	$replyKeyword = '秘書';
 	error_log("訊息【".$inputStr."】進入parseInput");
 
 	//preg_match ( "/A/" , B)。A是要比對的關鍵字（正則），B是被比對的字串
