@@ -49,6 +49,9 @@ function KeyWordReply($inputStr) {
     //鴨霸獸幫我選～～
 	if(stristr($inputStr, '選') != false||
 		stristr($inputStr, '決定') != false||
+	   	stristr($Answer, '吃') != false||
+		stristr($Answer, '喝') != false||
+		stristr($Answer, '打') != false||
 		stristr($inputStr, '挑') != false) {
 		
 		$rplyArr = explode(' ',$inputStr);
