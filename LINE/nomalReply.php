@@ -60,7 +60,7 @@ function KeyWordReply($inputStr) {
 		if(stristr($Answer, '選') != false||
 		stristr($Answer, '決定') != false||
 		stristr($Answer, '挑') != false||
-		stristr($Answer, '老闆') != false) {
+		stristr($Answer, '秘書') != false) {
 			$rplyArr = Array(
                  '人生是掌握在自己手裡的',
                  '每個都很好哦',
