@@ -152,7 +152,7 @@ function mobile($inputStr) {
                 {
                     "type": "message",
                     "label": "系統指令說明",
-                    "text": "骰子狗CC"
+                    "text": "老闆CC"
                 },
                 {
                     "type": "message",
@@ -173,7 +173,7 @@ function mobile($inputStr) {
 				{
 					"type": "message",
 					"label": "系統指令說明",
-					"text": "骰子狗pb"
+					"text": "老闆pb"
 				},
 				{
 					"type": "message",
@@ -190,17 +190,17 @@ function mobile($inputStr) {
 		},
 		{
 			"title": "《附加功能》",
-			"text": "附加功能相關指令，關鍵字為「骰子狗」以及 .jpg 和 (ry",
+			"text": "附加功能相關指令，關鍵字為「老闆」以及 .jpg ,
 			"actions": [
 				{
 					"type": "message",
 					"label": "附加功能指令說明",
-					"text": "骰子狗其他"
+					"text": "老闆其他"
 				},
 				{
 					"type": "message",
 					"label": "隨機選擇範例",
-					"text": "骰子狗，請幫我選宵夜要吃 鹽酥雞 滷味 吃p吃，不准吃"
+					"text": "老闆，請幫我選宵夜要吃 鹽酥雞 滷味 滷肉飯"
 				},
 				{
 					"type": "message",
