@@ -160,7 +160,7 @@ function mobile($inputStr) {
                 {
                     "type": "message",
                     "label": "系統指令說明",
-                    "text": "老闆CC"
+                    "text": "秘書CC"
                 },
                 {
                     "type": "message",
@@ -181,7 +181,7 @@ function mobile($inputStr) {
 				{
 					"type": "message",
 					"label": "系統指令說明",
-					"text": "老闆pb"
+					"text": "秘書pb"
 				},
 				{
 					"type": "message",
@@ -203,12 +203,12 @@ function mobile($inputStr) {
 				{
 					"type": "message",
 					"label": "附加功能指令說明",
-					"text": "老闆其他"
+					"text": "秘書其他"
 				},
 				{
 					"type": "message",
 					"label": "隨機選擇範例",
-					"text": "老闆，請幫我選宵夜要吃 鹽酥雞 滷味 滷肉飯"
+					"text": "秘書，請幫我選宵夜要吃 鹽酥雞 滷味 滷肉飯"
 				},
 				{
 					"type": "message",
