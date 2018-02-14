@@ -73,7 +73,15 @@ function KeyWordReply($inputStr) {
 	//以下是運勢功能
 	if(stristr($inputStr, '運勢') != false){
 		$rplyArr=Array('超大吉','大吉','大吉','中吉','中吉','中吉','小吉','小吉','小吉','小吉','凶','凶','凶','大凶','大凶','你還是，不要知道比較好','這應該不關我的事');
-		return buildTextMessage($inputStr.'運勢喔…我覺得，'.$rplyArr[Dice(count($rplyArr))-1].'吧。');
+		if(stristr($inputStr, '感情') != false){
+			return buildTextMessage('感情運勢喔…我覺得，'.$rplyArr[Dice(count($rplyArr))-1].'吧。');
+		}
+		else if(stristr($inputStr, '打牌') != false){
+			return buildTextMessage('打牌運勢喔…我覺得，'.$rplyArr[Dice(count($rplyArr))-1].'吧。');
+		}
+		else{
+			return buildTextMessage('運勢喔…我覺得，'.$rplyArr[Dice(count($rplyArr))-1].'吧。');
+		}
 	} 
 	
     //以下是關鍵字回覆功能，檔案在 /ReplyJson/textReply.json
