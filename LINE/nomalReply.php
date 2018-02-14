@@ -64,10 +64,10 @@ function KeyWordReply($inputStr) {
 			$rplyArr = Array(
                  '人生是掌握在自己手裡的',
                  '每個都很好哦',
-                 '不要把這麼重要的事情交給骰子狗決定比較好吧');
+                 '不要把這麼重要的事情交給我決定比較好吧');
 		$Answer = $rplyArr[Dice(count($rplyArr))-1];
 		}
-    return buildTextMessage('我想想喔……我覺得，'.$Answer.'。');
+    return buildTextMessage('我想想喔……我覺得，'.$Answer.'很可以。');
 	}
 	else    
 	//以下是運勢功能
