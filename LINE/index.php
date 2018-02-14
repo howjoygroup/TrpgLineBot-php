@@ -207,7 +207,7 @@ foreach ($bot->parseEvents() as $event) {
 
 //這是基本判斷式
 function parseInput ($inputStr){
-	$replyKeyword = '骰子狗';
+	$replyKeyword = '老闆';
 	error_log("訊息【".$inputStr."】進入parseInput");
 
 	//preg_match ( "/A/" , B)。A是要比對的關鍵字（正則），B是被比對的字串
