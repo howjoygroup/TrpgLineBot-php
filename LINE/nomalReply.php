@@ -57,7 +57,7 @@ function KeyWordReply($inputStr) {
 		
 		$rplyArr = explode(' ',$inputStr);
     
-		if (count($rplyArr) == 1) {return buildTextMessage('選擇的格式不對啦！');}
+		if (count($rplyArr) == 1) {return buildTextMessage('我不明白你的意思QQ');}
     
 		$Answer = $rplyArr[Dice(count($rplyArr))-1];
 		
@@ -75,7 +75,7 @@ function KeyWordReply($inputStr) {
                  '不要把這麼重要的事情交給我決定比較好吧');
 		$Answer = $rplyArr[Dice(count($rplyArr))-1];
 		}
-    return buildTextMessage('我想想喔……我覺得，'.$Answer.'。');
+    return buildTextMessage('我想想喔……我覺得'.$Answer.'。');
 	}
 	else    
 	//以下是運勢功能
