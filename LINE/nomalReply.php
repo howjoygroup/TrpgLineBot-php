@@ -88,7 +88,7 @@ function KeyWordReply($inputStr) {
 			return buildTextMessage('打牌運勢喔…我覺得，'.$rplyArr[Dice(count($rplyArr))-1].'吧。');
 		}
 		else{
-			return buildTextMessage('運勢喔…我覺得，'.$rplyArr[Dice(count($rplyArr))-1].'吧。');
+			return buildTextMessage('運勢喔…我覺得'.$rplyArr[Dice(count($rplyArr))-1].'吧。');
 		}
 	} 
 	
