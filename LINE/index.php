@@ -207,7 +207,7 @@ foreach ($bot->parseEvents() as $event) {
 
 //這是基本判斷式
 function parseInput ($inputStr){
-	$replyKeyword = '秘書';$replyKeyword2 = '誰';$replyKeyword3 = '你';$replyKeyword4 = '運';
+	$replyKeyword = '秘書';$replyKeyword2 = '誰';$replyKeyword4 = '運';
 		
 	error_log("訊息【".$inputStr."】進入parseInput");
 
@@ -221,7 +221,7 @@ function parseInput ($inputStr){
 	}else if(preg_match ("/^pb/i", $inputStr)){		
 		return pbta($inputStr);
 		
-	}else if(stristr($inputStr,$replyKeyword) != false||stristr($inputStr,$replyKeyword2) != false||stristr($inputStr,$replyKeyword3) != false||stristr($inputStr,$replyKeyword4) != false){
+	}else if(stristr($inputStr,$replyKeyword) != false||stristr($inputStr,$replyKeyword2) != false||stristr($inputStr,$replyKeyword4) != false){
 		return KeyWordReply($inputStr);	
 
 	}else if(stristr(strtolower($inputStr),".jpg") != false||strtolower($inputStr) != false){
