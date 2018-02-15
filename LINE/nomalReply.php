@@ -52,6 +52,7 @@ function KeyWordReply($inputStr) {
 	   	stristr($inputStr, '吃') != false||
 		stristr($inputStr, '喝') != false||
 		stristr($inputStr, '打') != false||
+	        stristr($inputStr,'誰') != false||
 		stristr($inputStr, '挑') != false) {
 		
 		$rplyArr = explode(' ',$inputStr);
@@ -66,6 +67,7 @@ function KeyWordReply($inputStr) {
 		stristr($Answer, '吃') != false||
 		stristr($Answer, '喝') != false||
 		stristr($Answer, '打') != false||
+		stristr($Answer, '誰') != false||
 		stristr($Answer, '秘書') != false) {
 			$rplyArr = Array(
                  '人生是掌握在自己手裡的',
