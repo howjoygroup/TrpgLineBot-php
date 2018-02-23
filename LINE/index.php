@@ -207,7 +207,7 @@ foreach ($bot->parseEvents() as $event) {
 
 //這是基本判斷式
 function parseInput ($inputStr){
-	$replyKeyword = '秘書';$replyKeyword2 = '誰';$replyKeyword4 = '運';
+	$replyKeyword = '秘書';$replyKeyword2 = '誰';$replyKeyword4 = '@';
 		
 	error_log("訊息【".$inputStr."】進入parseInput");
 
