@@ -52,7 +52,6 @@ function KeyWordReply($inputStr) {
 	   	stristr($inputStr, '吃') != false||
 		stristr($inputStr, '喝') != false||
 		stristr($inputStr, '打') != false||
-	        stristr($inputStr,'誰') != false||
 		stristr($inputStr, '挑') != false) {
 		
 		$rplyArr = explode(' ',$inputStr);
@@ -67,28 +66,27 @@ function KeyWordReply($inputStr) {
 		stristr($Answer, '吃') != false||
 		stristr($Answer, '喝') != false||
 		stristr($Answer, '打') != false||
-		stristr($Answer, '誰') != false||
 		stristr($Answer, '秘書') != false) {
 				$rplyArr = Array(
                  		'人生是掌握在自己手裡的',
                  		'每個都很好哦',
-                 '		不要把這麼重要的事情交給我決定比較好吧');
+                 		'不要把這麼重要的事情交給我決定比較好吧');
 				$Answer = $rplyArr[Dice(count($rplyArr))-1];
 		}
     	return buildTextMessage('我想想喔……我覺得'.$Answer.'。');
 	}
 	else    
 	//以下是運勢功能
-	if(stristr($inputStr, '運') != false){
+	if(stristr($inputStr, '運勢') != false || stristr($inputStr, '感情運') != false || stristr($inputStr, '牌運') != false){
 		$rplyArr=Array('超大吉','大吉','大吉','中吉','中吉','中吉','小吉','小吉','小吉','小吉','凶','凶','凶','大凶','大凶','你還是，不要知道比較好','這應該不關我的事');
 		if(stristr($inputStr, '感情') != false){
-			return buildTextMessage('感情運勢喔…我覺得，'.$rplyArr[Dice(count($rplyArr))-1].'吧。');
+			return buildTextMessage('感情運勢喔…我覺得，'.$rplyArr[Dice(count($rplyArr))-1].'吧');
 		}
 		else if(stristr($inputStr, '牌') != false){
-			return buildTextMessage('打牌運勢喔…我覺得，'.$rplyArr[Dice(count($rplyArr))-1].'吧。');
+			return buildTextMessage('打牌運勢喔…我覺得，'.$rplyArr[Dice(count($rplyArr))-1].'吧');
 		}
 		else{
-			return buildTextMessage('運勢喔…我覺得'.$rplyArr[Dice(count($rplyArr))-1].'吧。');
+			return buildTextMessage('運勢喔…我覺得'.$rplyArr[Dice(count($rplyArr))-1].'吧');
 		}
 	} 
 	
