@@ -49,9 +49,6 @@ function KeyWordReply($inputStr) {
     //鴨霸獸幫我選～～
 	if(stristr($inputStr, '選') != false||
 		stristr($inputStr, '決定') != false||
-	   	stristr($inputStr, '吃') != false||
-		stristr($inputStr, '喝') != false||
-		stristr($inputStr, '打') != false||
 		stristr($inputStr, '挑') != false) {
 		
 		$rplyArr = explode(' ',$inputStr);
@@ -63,9 +60,6 @@ function KeyWordReply($inputStr) {
 		if(stristr($Answer, '選') != false||
 		stristr($Answer, '決定') != false||
 		stristr($Answer, '挑') != false||
-		stristr($Answer, '吃') != false||
-		stristr($Answer, '喝') != false||
-		stristr($Answer, '打') != false||
 		stristr($Answer, '秘書') != false) {
 				$rplyArr = Array(
                  		'人生是掌握在自己手裡的',
