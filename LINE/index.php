@@ -17,7 +17,7 @@
  */
 
 require_once('./LINEBotTiny.php');
-
+require_once('./Dice/Dice_extraDice.php');
 require_once('./nomalReply.php');
 require_once('./Dice/Dice_CoC7th.php');
 require_once('./Dice/Dice_nomalDice.php');
@@ -232,6 +232,8 @@ function parseInput ($inputStr){
 		
 	}else if(preg_match ("/d/i", $inputStr) !=false){
 		return nomalDiceRoller($inputStr);
+	}else if(preg_match ("/b/i", $inputStr) !=false){
+		return bDice($inputStr);
 	}
 	
 	
