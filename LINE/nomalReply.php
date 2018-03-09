@@ -79,6 +79,9 @@ function KeyWordReply($inputStr) {
 		else if(stristr($inputStr, '牌') != false){
 			return buildTextMessage('打牌運勢喔…我覺得，'.$rplyArr[Dice(count($rplyArr))-1].'吧');
 		}
+		else if(stristr($inputStr, '現註') != false){
+			return buildTextMessage('現註運勢喔…我覺得，'.$rplyArr[Dice(count($rplyArr))-1].'吧');
+		}
 		else{
 			return buildTextMessage('運勢喔…我覺得'.$rplyArr[Dice(count($rplyArr))-1].'吧');
 		}
