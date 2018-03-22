@@ -230,9 +230,9 @@ function parseInput ($inputStr){
 	}else if(stristr($inputStr,"mobile") != false){
 		return mobile($inputStr);			
 		
-	}else if(preg_match ("/d/i", $inputStr) !=false){
+	}else if(preg_match ("/d/i", $inputStr) ){
 		return nomalDiceRoller($inputStr);
-	}else if(preg_match ("/b/i", $inputStr) !=false){
+	}else if(preg_match ("/b/i", $inputStr) ){
 		return bDice($inputStr);
 	}
 	
