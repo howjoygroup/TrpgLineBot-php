@@ -1,233 +1,123 @@
 <?php
-
-function KeyWordReply($inputStr) { 
-	$inputStr = strtolower($inputStr);
-	
-	//讀入manual.json
-	$handle = fopen("./ReplyJson/manual.json","r");	
-	$content = "";
-	while (!feof($handle)) {
-		$content .= fread($handle, 10000);
-		}
-	fclose($handle);	
-	$manual = json_decode($content, true);
-
-	//一般功能說明
-	if(stristr($inputStr, '說明') != false) {
-		return buildTextMessage($manual[0]['說明']);
-	}
-	
-	//更新日誌與公告，使用外聯檔案
-	//可以是為一個使用外聯檔案的範例
-	if(stristr($inputStr, '更新與公告') != false) {
-		
-		$file = fopen("https://www.dropbox.com/s/h9m9lfhj8pvlu8k/updated.txt?dl=1", "r");
-		$reply = '';
-
-		//輸出文本中所有的行，直到文件結束為止。
-		while(! feof($file))
-		{
-			$reply =  $reply.fgets($file);
-		}
-		//當讀出文件一行後，就在後面加上 <br> 讓html知道要換行
-		fclose($file);
-		
-		return buildTextMessage($reply);
-	}
-	
-			
-	foreach($manual as $systems){
-		foreach($systems['系統縮寫'] as $chack){
-	
-			if(stristr($inputStr, $chack) != false){
-			return buildTextMessage($systems['說明']);
-			break;
-			}
-		}
-	}	
-          
-    //鴨霸獸幫我選～～
-	if(stristr($inputStr, '選') != false||
-		stristr($inputStr, '決定') != false||
-		stristr($inputStr, '挑') != false) {
-		
-		$rplyArr = explode(' ',$inputStr);
-    
-		if (count($rplyArr) == 1) {return buildTextMessage('我不明白你的意思QQ');}
-    
-		$Answer = $rplyArr[Dice(count($rplyArr))-1];
-		
-		if(stristr($Answer, '選') != false||
-		stristr($Answer, '決定') != false||
-		stristr($Answer, '挑') != false||
-		stristr($Answer, '秘書') != false) {
-				$rplyArr = Array(
-                 		'人生是掌握在自己手裡的',
-                 		'每個都很好哦',
-                 		'不要把這麼重要的事情交給我決定比較好吧');
-				$Answer = $rplyArr[Dice(count($rplyArr))-1];
-		}
-    	return buildTextMessage('我想想喔……我覺得'.$Answer.'。');
-	}
-	else    
-	//以下是運勢功能
-	if(stristr($inputStr, '運勢') != false || stristr($inputStr, '感情運') != false || stristr($inputStr, '牌運') != false){
-		$rplyArr=Array('超大吉','大吉','大吉','中吉','中吉','中吉','小吉','小吉','小吉','小吉','凶','凶','凶','大凶','大凶','你還是，不要知道比較好','這應該不關我的事');
-		if(stristr($inputStr, '感情') != false){
-			return buildTextMessage('感情運勢喔…我覺得，'.$rplyArr[Dice(count($rplyArr))-1].'吧');
-		}
-		else if(stristr($inputStr, '牌') != false){
-			return buildTextMessage('打牌運勢喔…我覺得，'.$rplyArr[Dice(count($rplyArr))-1].'吧');
-		}
-		else if(stristr($inputStr, '現註') != false){
-			return buildTextMessage('現註運勢喔…我覺得，'.$rplyArr[Dice(count($rplyArr))-1].'吧');
-		}
-		else{
-			return buildTextMessage('運勢喔…我覺得'.$rplyArr[Dice(count($rplyArr))-1].'吧');
-		}
-	} 
-	
-    //以下是關鍵字回覆功能，檔案在 /ReplyJson/textReply.json
-	//你也可以直接把json檔案在自己的dropboox之類的地方，用外聯的方式來鏈接
-	
-	//讀入json
-	$handle = fopen("./ReplyJson/textReply.json","r");	
-	$content = "";
-	while (!feof($handle)) {
-		$content .= fread($handle, 10000);
-	}
-	fclose($handle);	
-	$content = json_decode($content, true);
-		
-	foreach($content as $txtChack){
-		foreach($txtChack['chack'] as $chack){
-	
-			if(stristr($inputStr, $chack) != false){
-			return buildTextMessage($txtChack['text'][Dice(count($txtChack['text'])-1)]);
-			break;
-			}
-		}
-	}
-	
-  //沒有觸發關鍵字則是這個
-	
-	$rplyArr = $content[0]['text'];
-	return buildTextMessage($rplyArr[Dice(count($rplyArr))-1]);
-	
+function Dice($diceSided){
+	return rand(1,$diceSided);
 }
-
-//圖片關鍵字功能
-function SendImg($inputStr) {
+function nomalDiceRoller($inputStr){
+	error_log("是【一般擲骰】啦，媽ㄉ發科！");
 	
-	//以下是關鍵字回覆功能，檔案在 /ReplyJson/imgReply.json
-	//讀入json
-	$handle = fopen("./ReplyJson/imgReply.json","r");	
-	$content = "";
-	while (!feof($handle)) {
-		$content .= fread($handle, 10000);
-		}
-	fclose($handle);	
-	$content = json_decode($content, true);	
+//先定義要輸出的Str
+//先把這個打出來，然後在過程中一點一點把它補上去，大部分的思路是這樣的。
+	$finalStr = '';
+	$inputStr = strtolower((string)$inputStr);
 	
-	foreach($content as $ImgChack){
-		foreach($ImgChack['chack'] as $chack){
-			
-			if(stristr($inputStr, $chack) != false){
-			$arrNum = Dice(count($ImgChack['img']))-1;
-			error_log("回復陣列第".$arrNum);
-			return buildImgMessage($ImgChack['img'][$arrNum]);
-			break;
-			}
-		}
+	if(preg_match ("/\d+d\d+/i", $inputStr) == false||
+		preg_match ("/\./", $inputStr) != false){
+		error_log("不符合骰子格式");
+		return null;
 	}
 	
-	return null;
-}
-
-//手機才看得到的訊息。
-function mobile($inputStr) { 
-		error_log("手機版專用訊息 ");
-		if(stristr($inputStr, '系統說明mobile') != false){
-			
-			$message ='
-			{
-  "type": "template",
-  "altText": "系統說明",
-  "template": {
-      "type": "carousel",
-      "columns": [
-          {
-            "title": "《CoC7th 克蘇魯的呼喚》",
-            "text": "本系統相關指令，關鍵字為 CC",
-            "actions": [
-                {
-                    "type": "message",
-                    "label": "系統指令說明",
-                    "text": "秘書CC"
-                },
-                {
-                    "type": "message",
-                    "label": "獎懲骰範例",
-                    "text": "CC(2)<=50 獎勵骰示範"
-                },
-                {
-                    "type": "message",
-                    "label": "技能成長範例",
-                    "text": "CC>20 技能成長示範"
-                }
-            ]
-          },
-          {
-			"title": "《PBTA系統》",
-			"text": "本系統相關指令，關鍵字為 pb",
-			"actions": [
-				{
-					"type": "message",
-					"label": "系統指令說明",
-					"text": "秘書pb"
-				},
-				{
-					"type": "message",
-					"label": "一般擲骰範例",
-					"text": "pb 示範"
-				},
-				{
-					"type": "message",
-					"label": "調整值範例",
-					"text": "pb+1 調整值示範"
-				}
-						
-			]
-		},
-		{
-			"title": "《附加功能》",
-			"text": "附加功能相關指令，關鍵字為「老闆」以及 .jpg ,
-			"actions": [
-				{
-					"type": "message",
-					"label": "附加功能指令說明",
-					"text": "秘書其他"
-				},
-				{
-					"type": "message",
-					"label": "隨機選擇範例",
-					"text": "秘書，請幫我選宵夜要吃 鹽酥雞 滷味 滷肉飯"
-				},
-				{
-					"type": "message",
-					"label": "圖片回應範例",
-					"text": "我覺得不行.jpg"
-				}
-						
-			]
+	//抓第一部分出來
+	preg_match ("/\S+/i", $inputStr , $matches);
+	$mutiOrNot = $matches[0];
+	error_log("擷取第一部分");
+	
+	//如果沒有非整數，就是複數擲骰。
+	if(preg_match ("/\D/", $mutiOrNot) == false)  {		
+		$finalStr= '複數擲骰：';
+		if((int)$mutiOrNot>20) return '不支援20次以上的複數擲骰。';
+		
+		//拆開第二部份
+		$DiceToRoll  = explode(' ',$inputStr)[1];
+		
+		if(preg_match ("/\d+d\d+/i", $DiceToRoll) == false||
+			preg_match ("/\Dd|d\D/i", $DiceToRoll) != false||
+			preg_match ("/[^0-9dD+\-*\/()]/", $DiceToRoll) != false){
+				
+			error_log("取出值不符合骰子格式");
+			return null;
 		}
-      ]
+		
+		for ($i=1 ; $i<=$mutiOrNot ;$i++){
+			$finalStr = $finalStr."\n".$i.'# '.DiceCal($DiceToRoll)['eqStr'];
+		}
+	
+		 //報錯，不解釋。
+		if(preg_match ("/200D/", $finalStr) != false){$finalStr = "複數擲骰：\n欸欸，不支援200D以上擲骰；哪個時候會骰到兩百次以上？想被淨灘嗎？";}
+		if(preg_match ("/D500/", $finalStr) != false){$finalStr = "複數擲骰：\n不支援D1和超過D500的擲骰；想被淨灘嗎？";}
+		
+	}
+	else {
+		$DiceToRoll = $mutiOrNot;
+		if(preg_match ("/\d+d\d+/i", $DiceToRoll) == false||
+			preg_match ("/\Dd|d\D/i", $DiceToRoll) != false||
+			preg_match ("/[^0-9dD+\-*\/()]/", $DiceToRoll) != false){
+			error_log("取出值不符合骰子格式");
+			return null;
+		}
+	
+		$finalStr = "基本擲骰：\n".DiceCal($mutiOrNot)['eqStr'];
+	
+	}
+	
+	return buildTextMessage($finalStr);	
+}
+//這就是作計算的函數，負責把骰子算出來。
+function DiceCal($inputStr){
+  
+  //首先判斷是否是誤啟動（檢查是否有符合骰子格式）
+  //你可能會想說上面不是檢查過了，但是因為在別的地方還機會呼叫所以不能省
+	if(preg_match ("/\d+d\d+/i", $inputStr) == false||
+		preg_match ("/\./", $inputStr) != false){
+		error_log("不符合骰子格式");
+		return null;
+	}
+  //一樣先定義要輸出的Str
+	$equationStr = '' ;  
+  
+  //一般單次擲骰，先把字串讀進來轉小寫
+	$DiceToRoll = strtolower((string)$inputStr);
+  
+  //再檢查一次
+	if(preg_match ("/\d+d\d+/i", $DiceToRoll) == false||
+		preg_match ("/\Dd|d\D/i", $DiceToRoll) != false||
+		preg_match ("/[^0-9dD+\-*\/()]/", $DiceToRoll) != false){
+		error_log("取出值不符合骰子格式");
+		return null;
+	}
+  
+  //寫出算式，這裡使用while將所有「幾d幾」的骰子找出來，一個一個帶入RollDice並取代原有的部分
+  while(preg_match ("/\d+d\d+/i", $DiceToRoll ,$matches) != false) {
+    $tempMatch = (String)$matches[0];    
+    if (explode('d',$tempMatch)[0]>200){return Array('eqStr'=>'欸欸，不支援200D以上擲骰；哪個時候會骰到兩百次以上？想被淨灘嗎？');}
+    if (explode('d',$tempMatch)[1]==1 || explode('d',$tempMatch)[1]>500){return Array('不支援D1和超過D500的擲骰；想被淨灘嗎？');}
+    $DiceToRoll = preg_replace("/\d+d\d+/i" , RollDice($tempMatch) , $DiceToRoll,1);
   }
-}';
-			$message = json_decode($message , true);
-			$send = new MutiMessage();
-			$replyArr = Array($message);
-			
-			return $send->send($replyArr );
-		}
+  
+    //計算算式
+  $answer = eval("return $DiceToRoll;");
+  $equationStr= $DiceToRoll.' = '.$answer;
+  
+  $Final =Array(
+  'eq'=> $DiceToRoll,
+  'eqStr'=>$equationStr
+  );
+  return $Final;
+}
+//用來把d給展開成算式的函數
+function RollDice($inputStr){
+  //先把inputStr變成字串（不知道為什麼非這樣不可）
+  $comStr=strtolower((string)$inputStr);
+  
+  //若是要把 3d6 變成 (2+1+4) ，那就先要有個 (
+  $finalStr = '(';
+  $diceNum = explode('d',$comStr)[0];
+  $diceSid = explode('d',$comStr)[1];
+  
+  //接下來就是看有幾d幾，就要骰幾次骰，像是 3d6 就要做 3 次 Dice(6)，還要補上加號
+  for ($i = 1; $i <= $diceNum; $i++) {	  
+    $finalStr = $finalStr.Dice($diceSid).'+';
+  }
+  //那這樣會多一個+號，所以要去掉，再補上 ) ，這樣就完成了。
+  $finalStr = chop($finalStr,'+').')';
+  return $finalStr;
 }
