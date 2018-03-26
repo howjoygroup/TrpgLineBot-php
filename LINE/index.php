@@ -218,7 +218,7 @@ foreach ($bot->parseEvents() as $event) {
 			error_log("被加入聊天室");
 			$messages = new MutiMessage();
 			$replyArr = Array(
-				$messages->text("大家好，我是擲骰機器人".$keyWord."。\n請輸入「".$keyWord."說明」獲得使用說明。"),
+				$messages->text("大家好，我是宏豪的".$keyWord."。\n請輸入「".$keyWord."說明」獲得使用說明。"),
 				$messages->sticker(1,2)
 			);
 			
