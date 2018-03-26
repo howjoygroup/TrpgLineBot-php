@@ -10,7 +10,7 @@ function KeyWordReply($inputStr,$keyWord,$manualUrl,$textReplyUrl,$userName) {
 	
 	//如果失敗就調用預設值
 	if ($content === false) {
-		$content = file_get_contents('./exampleJson/manual.json');
+		$content = file_get_contents('./ReplyJson/manual.json');
 	}
 	
 	//userName會回傳為使用者名稱，如果有辦法取得的話。
