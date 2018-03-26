@@ -106,7 +106,7 @@ function KeyWordReply($inputStr,$keyWord,$manualUrl,$textReplyUrl,$userName) {
 	
 	//如果失敗就調用預設值
 	if ($content === false) {
-		$content = file_get_contents('./exampleJson/textReply.json');
+		$content = file_get_contents('./ReplyJson/textReply.json');
 	}
 	
 	//userName會回傳為使用者名稱，如果有辦法取得的話。
@@ -140,7 +140,7 @@ function SendImg($inputStr,$imgsReplyUrl) {
 	$content = file_get_contents($imgsReplyUrl);
 	//如果失敗就調用預設值
 	if ($content === false) {
-		$content = file_get_contents('./exampleJson/imgReply.json');
+		$content = file_get_contents('./ReplyJson/imgReply.json');
 	}
 	
 	$content = json_decode($content, true);
