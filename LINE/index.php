@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright 2016 LINE Corporation
  *
@@ -15,23 +14,15 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-
 require_once('./LINEBotTiny.php');
-
 require_once('./nomalReply.php');
 require_once('./Dice/Dice_CoC7th.php');
 require_once('./Dice/Dice_nomalDice.php');
 require_once('./Dice/Dice_pbta.php');
-
-
 //主要的全域變數，只有簡易的API，覺得難過香菇
 $channelAccessToken = getenv('LINE_CHANNEL_ACCESSTOKEN');
 $channelSecret = getenv('LINE_CHANNEL_SECRET');
-
 $bot = new LINEBotTiny($channelAccessToken, $channelSecret);
-
-
-
 //建立文字訊息的函數
 function buildTextMessage($inputStr){	
 	settype($inputStr, "string");
@@ -45,7 +36,6 @@ function buildTextMessage($inputStr){
         );
 	return $message;
 }
-
 //建立圖片訊息的函數
 function buildImgMessage($inputStr){	
 	settype($inputStr, "string");
@@ -60,7 +50,6 @@ function buildImgMessage($inputStr){
         );
 	return $message;
 }
-
 //建立貼圖訊息的函數
 function buildStickerMessage($packageId, $stickerId){	
 	error_log("準備回傳".$packageId."之".$stickerId."貼圖");
@@ -74,11 +63,8 @@ function buildStickerMessage($packageId, $stickerId){
         );
 	return $message;
 }
-
-
 //建立複數訊息的物件
 class MutiMessage{
-
 	public function send($inputArr){	
 		//settype($inputStr, "string");
 		error_log("回傳複數訊息");
@@ -121,10 +107,6 @@ class MutiMessage{
 	}
 	
 }
-
-
-
-
 foreach ($bot->parseEvents() as $event) {
 		
     switch ($event['type']) {
@@ -157,7 +139,6 @@ foreach ($bot->parseEvents() as $event) {
 						);
 						
 						
-
                 	}
                     break;
                 
@@ -204,13 +185,11 @@ foreach ($bot->parseEvents() as $event) {
             break;
     }
 };
-
 //這是基本判斷式
 function parseInput ($inputStr){
 	$replyKeyword = '秘書';
 	$replyKeyword2 = '新朋友';
 	error_log("訊息【".$inputStr."】進入parseInput");
-
 	//preg_match ( "/A/" , B)。A是要比對的關鍵字（正則），B是被比對的字串
 	if (preg_match ("/dvtest/i", $inputStr)){
 		return DvTest ($inputStr);
@@ -223,15 +202,14 @@ function parseInput ($inputStr){
 		
 	}else if(stristr($inputStr,$replyKeyword) != false || stristr($inputStr,$replyKeyword2) != false){
 		return KeyWordReply($inputStr);	
-
-	else if(stristr($inputStr,"mobile") != false){
+	}else if(stristr(strtolower($inputStr),".jpg") != false|| stristr(strtolower($inputStr),"ry") != false){
+		return SendImg($inputStr);
+		
+	}else if(stristr($inputStr,"mobile") != false){
 		return mobile($inputStr);			
 		
 	}else if(preg_match ("/d/i", $inputStr) !=false){
 		return nomalDiceRoller($inputStr);
-	}else if(stristr(strtolower($inputStr),".jpg") != false|| strtolower($inputStr)!= false){
-		return SendImg($inputStr);
-		
 	}
 	
 	
@@ -239,8 +217,6 @@ function parseInput ($inputStr){
 	return null;
 	}
 }
-
-
 function DvTest ($inputStr){
 	error_log("進入DvTest");
 	if(preg_match ("/muti|複數|多重/i", $inputStr) !=false){
@@ -269,4 +245,3 @@ function DvTest ($inputStr){
 	
 	return null;
 }
-
