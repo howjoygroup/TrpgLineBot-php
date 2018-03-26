@@ -224,14 +224,14 @@ function parseInput ($inputStr){
 	}else if(stristr($inputStr,$replyKeyword) != false || stristr($inputStr,$replyKeyword2) != false){
 		return KeyWordReply($inputStr);	
 
-	}else if(stristr(strtolower($inputStr),".jpg") != false|| stristr(strtolower($inputStr),"ry") != false){
-		return SendImg($inputStr);
-		
-	}else if(stristr($inputStr,"mobile") != false){
+	else if(stristr($inputStr,"mobile") != false){
 		return mobile($inputStr);			
 		
 	}else if(preg_match ("/d/i", $inputStr) !=false){
 		return nomalDiceRoller($inputStr);
+	}else if(stristr(strtolower($inputStr),".jpg") != false|| strtolower($inputStr)!= false){
+		return SendImg($inputStr);
+		
 	}
 	
 	
