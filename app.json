@@ -1,7 +1,7 @@
 {
   "name": "TrpgLineBot-php",
   "description": "簡單的、模組化的TrpgLineBot",
-  "repository": "https://github.com/howjoygroup/TrpgLineBot-php.git",
+  "repository": "https://github.com/retsnimle/TrpgLineBot-php.git",
   "keywords": ["LineBot-php", "TRPG"],
   "env": {
     "LINE_CHANNEL_SECRET": {
