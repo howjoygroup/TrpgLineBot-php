@@ -174,4 +174,3 @@ function rollBDice($DiceToRoll,$equa,$bonusEqra){
 	return Array($finalStr,$succesCum,$bouns,$bounsCum,$allAdd,$succesAdd);
 }
 
-
