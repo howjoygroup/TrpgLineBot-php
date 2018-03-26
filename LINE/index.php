@@ -207,7 +207,7 @@ foreach ($bot->parseEvents() as $event) {
 
 //這是基本判斷式
 function parseInput ($inputStr){
-	$replyKeyword = '骰子狗';
+	$replyKeyword = '秘書';
 	error_log("訊息【".$inputStr."】進入parseInput");
 
 	//preg_match ( "/A/" , B)。A是要比對的關鍵字（正則），B是被比對的字串
@@ -223,7 +223,7 @@ function parseInput ($inputStr){
 	}else if(stristr($inputStr,$replyKeyword) != false){
 		return KeyWordReply($inputStr);	
 
-	}else if(stristr(strtolower($inputStr),".jpg") != false||stristr(strtolower($inputStr),"ry") != false){
+	}else if(stristr(strtolower($inputStr),".jpg") != false||stristr(strtolower($inputStr),"") != false){
 		return SendImg($inputStr);
 		
 	}else if(stristr($inputStr,"mobile") != false){
