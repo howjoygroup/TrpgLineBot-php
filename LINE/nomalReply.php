@@ -1,19 +1,57 @@
 <?php
-function KeyWordReply($inputStr) { 
+
+function KeyWordReply($inputStr,$keyWord,$manualUrl,$textReplyUrl,$userName) { 
 	$inputStr = strtolower($inputStr);
 	
-	//讀入manual.json
-	$handle = fopen("./ReplyJson/manual.json","r");	
-	$content = "";
-	while (!feof($handle)) {
-		$content .= fread($handle, 10000);
-		}
-	fclose($handle);	
-	$manual = json_decode($content, true);
-	//一般功能說明
-	if(stristr($inputStr, '說明') != false) {
-		return buildTextMessage($manual[0]['說明']);
+	
+	//以下是回應功能
+	//讀入文字回應變數
+	$content = file_get_contents($manualUrl);
+	
+	//如果失敗就調用預設值
+	if ($content === false) {
+		$content = file_get_contents('./exampleJson/manual.json');
 	}
+	
+	//userName會回傳為使用者名稱，如果有辦法取得的話。
+	$content = preg_replace("/userName/" , $userName , $content);
+	//keyWord會回傳為設定的關鍵字，通常就是機器人的名字。
+	$content = preg_replace("/keyWord/" , $keyWord , $content);
+	$manual = json_decode($content, true);
+
+	
+	//功能說明
+	if(stristr($inputStr,'說明') != false){ 
+	foreach($manual as $systems){
+		foreach($systems['Syskey'] as $chack){	
+			if(stristr($inputStr, $chack) != false){
+				$mutiMessage = new MutiMessage();
+				$replyArr = Array();
+			
+				foreach($systems['about'] as $message){
+					switch ($message['type']) {
+						case 'text':
+							array_push($replyArr, $mutiMessage->text($message['text']));							
+						break;
+						
+						case 'carousel':
+							error_log("發現旋轉木馬訊息");
+							array_push($replyArr, $mutiMessage->carousel($message['altText'],$message['columns']));
+						break;
+						
+					}	
+				
+				
+				}
+				
+				return $mutiMessage->send($replyArr);
+				break;
+			}
+		}
+	}	
+	}
+	
+	
 	
 	//更新日誌與公告，使用外聯檔案
 	//可以是為一個使用外聯檔案的範例
@@ -21,6 +59,7 @@ function KeyWordReply($inputStr) {
 		
 		$file = fopen("https://www.dropbox.com/s/h9m9lfhj8pvlu8k/updated.txt?dl=1", "r");
 		$reply = '';
+
 		//輸出文本中所有的行，直到文件結束為止。
 		while(! feof($file))
 		{
@@ -32,18 +71,8 @@ function KeyWordReply($inputStr) {
 		return buildTextMessage($reply);
 	}
 	
-			
-	foreach($manual as $systems){
-		foreach($systems['系統縮寫'] as $chack){
-	
-			if(stristr($inputStr, $chack) != false){
-			return buildTextMessage($systems['說明']);
-			break;
-			}
-		}
-	}	
           
-    //鴨霸獸幫我選～～
+    //幫我選～～
 	if(stristr($inputStr, '選') != false||
 		stristr($inputStr, '決定') != false||
 		stristr($inputStr, '挑') != false) {
@@ -52,17 +81,15 @@ function KeyWordReply($inputStr) {
     
 		if (count($rplyArr) == 1) {return buildTextMessage('選擇的格式不對啦！');}
     
-		$Answer = $rplyArr[Dice(count($rplyArr))-1];
-		
-		if(stristr($Answer, '選') != false||
-		stristr($Answer, '決定') != false||
-		stristr($Answer, '挑') != false||
-		stristr($Answer, '秘書') != false) {
+		$Answer = $rplyArr[Dice(count($rplyArr)-1)];
+				
+		if( Dice(10) ==1){
 			$rplyArr = Array(
                  '人生是掌握在自己手裡的',
-                 '每個都很好哦',
-                 '不要把這麼重要的事情交給骰子狗決定比較好吧');
-		$Answer = $rplyArr[Dice(count($rplyArr))-1];
+                 '隨便哪個都好啦',
+                 '連這種東西都不能決定，是不是不太應該啊',
+                 '不要把這種東西交給'.$keyWord.'決定比較好吧');
+		$Answer = $rplyArr[Dice(count($rplyArr)-1)];
 		}
     return buildTextMessage('我想想喔……我覺得'.$Answer.'。');
 	}
@@ -73,23 +100,28 @@ function KeyWordReply($inputStr) {
 		return buildTextMessage('運勢喔…我覺得，'.$rplyArr[Dice(count($rplyArr))-1].'吧。');
 	} 
 	
-    //以下是關鍵字回覆功能，檔案在 /ReplyJson/textReply.json
-	//你也可以直接把json檔案在自己的dropboox之類的地方，用外聯的方式來鏈接
+    //以下是回應功能
+	//讀入文字回應變數
+	$content = file_get_contents($textReplyUrl);
 	
-	//讀入json
-	$handle = fopen("./ReplyJson/textReply.json","r");	
-	$content = "";
-	while (!feof($handle)) {
-		$content .= fread($handle, 10000);
+	//如果失敗就調用預設值
+	if ($content === false) {
+		$content = file_get_contents('./exampleJson/textReply.json');
 	}
-	fclose($handle);	
+	
+	//userName會回傳為使用者名稱，如果有辦法取得的話。
+	$content = preg_replace("/userName/" , $userName , $content);
+	//keyWord會回傳為設定的關鍵字，通常就是機器人的名字。
+	$content = preg_replace("/keyWord/" , $keyWord , $content);
+	
+	
 	$content = json_decode($content, true);
 		
 	foreach($content as $txtChack){
 		foreach($txtChack['chack'] as $chack){
 	
 			if(stristr($inputStr, $chack) != false){
-			return buildTextMessage($txtChack['text'][Dice(count($txtChack['text'])-1)]);
+			return buildTextMessage($txtChack['text'][Dice(count($txtChack['text']))-1]);
 			break;
 			}
 		}
@@ -101,117 +133,34 @@ function KeyWordReply($inputStr) {
 	return buildTextMessage($rplyArr[Dice(count($rplyArr))-1]);
 	
 }
-//圖片關鍵字功能
-function SendImg($inputStr) {
+
+function SendImg($inputStr,$imgsReplyUrl) {
 	
-	//以下是關鍵字回覆功能，檔案在 /ReplyJson/imgReply.json
-	//讀入json
-	$handle = fopen("./ReplyJson/imgReply.json","r");	
-	$content = "";
-	while (!feof($handle)) {
-		$content .= fread($handle, 10000);
-		}
-	fclose($handle);	
-	$content = json_decode($content, true);	
+	//讀入圖片回應變數
+	$content = file_get_contents($imgsReplyUrl);
+	//如果失敗就調用預設值
+	if ($content === false) {
+		$content = file_get_contents('./exampleJson/imgReply.json');
+	}
+	
+	$content = json_decode($content, true);
+		
 	
 	foreach($content as $ImgChack){
 		foreach($ImgChack['chack'] as $chack){
 			
 			if(stristr($inputStr, $chack) != false){
-			$arrNum = Dice(count($ImgChack['img']))-1;
-			error_log("回復陣列第".$arrNum);
-			return buildImgMessage($ImgChack['img'][$arrNum]);
+				
+			$imgURL = $ImgChack['img'][Dice(count($ImgChack['img']))-1];
+			
+			//LINE不支援非加密協定的http://，因此在這裡代換成https://
+			$imgURL = str_replace("http:","https:",$imgURL);
+
+			return buildImgMessage($imgURL);
 			break;
 			}
 		}
 	}
 	
 	return null;
-}
-//手機才看得到的訊息。
-function mobile($inputStr) { 
-		error_log("手機版專用訊息 ");
-		if(stristr($inputStr, '系統說明mobile') != false){
-			
-			$message ='
-			{
-  "type": "template",
-  "altText": "系統說明",
-  "template": {
-      "type": "carousel",
-      "columns": [
-          {
-            "title": "《CoC7th 克蘇魯的呼喚》",
-            "text": "本系統相關指令，關鍵字為 CC",
-            "actions": [
-                {
-                    "type": "message",
-                    "label": "系統指令說明",
-                    "text": "秘書CC"
-                },
-                {
-                    "type": "message",
-                    "label": "獎懲骰範例",
-                    "text": "CC(2)<=50 獎勵骰示範"
-                },
-                {
-                    "type": "message",
-                    "label": "技能成長範例",
-                    "text": "CC>20 技能成長示範"
-                }
-            ]
-          },
-          {
-			"title": "《PBTA系統》",
-			"text": "本系統相關指令，關鍵字為 pb",
-			"actions": [
-				{
-					"type": "message",
-					"label": "系統指令說明",
-					"text": "秘書pb"
-				},
-				{
-					"type": "message",
-					"label": "一般擲骰範例",
-					"text": "pb 示範"
-				},
-				{
-					"type": "message",
-					"label": "調整值範例",
-					"text": "pb+1 調整值示範"
-				}
-						
-			]
-		},
-		{
-			"title": "《附加功能》",
-			"text": "附加功能相關指令，關鍵字為「秘書」以及特殊關鍵字",
-			"actions": [
-				{
-					"type": "message",
-					"label": "附加功能指令說明",
-					"text": "秘書其他"
-				},
-				{
-					"type": "message",
-					"label": "隨機選擇範例",
-					"text": "秘書，請幫我選宵夜要吃 鹽酥雞 滷味 滷肉飯"
-				},
-				{
-					"type": "message",
-					"label": "圖片回應範例",
-					"text": "我覺得不行"
-				}
-						
-			]
-		}
-      ]
-  }
-}';
-			$message = json_decode($message , true);
-			$send = new MutiMessage();
-			$replyArr = Array($message);
-			
-			return $send->send($replyArr );
-		}
 }
