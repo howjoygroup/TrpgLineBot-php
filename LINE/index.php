@@ -235,7 +235,7 @@ foreach ($bot->parseEvents() as $event) {
 			error_log("被加入好友");
 			$messages = new MutiMessage();
 			$replyArr = Array(
-				$messages->text("你好哦，我是宏豪的秘書".$keyWord."。\n請輸入「".$keyWord."說明」獲得使用說明。"),
+				$messages->text("你好哦，我是宏豪的".$keyWord."。\n請輸入「".$keyWord."說明」獲得使用說明。"),
 				$messages->sticker(4,631),
 				$messages->text("建議使用手機界面，可以更簡單的選取說明哦。")
 			);
@@ -280,7 +280,7 @@ function parseInput ($inputStr){
 	}else if(stristr($inputStr,$keyWord) != false){ //$keyWord
 		return KeyWordReply($inputStr,$keyWord,$manualUrl,$textReplyUrl,$userName);
 				
-	}else if(stristr($inputStr,".jpg") != false || stristr($inputStr,"ry") != false){
+	}else if(stristr($inputStr,".jpg") != false || stristr($inputStr,"") != false){
 		return SendImg($inputStr,$imgsReplyUrl);
 		
 	}else if(preg_match ("/d/i", $inputStr) !=false){
