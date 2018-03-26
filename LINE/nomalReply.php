@@ -64,10 +64,10 @@ function KeyWordReply($inputStr) {
 			$rplyArr = Array(
                  '人生是掌握在自己手裡的',
                  '每個都很好哦',
-                 '不要把這麼重要的事情交給骰子狗決定比較好吧');
+                 '不要把這麼重要的事情交給我決定比較好吧');
 		$Answer = $rplyArr[Dice(count($rplyArr))-1];
 		}
-    return buildTextMessage('我想想喔……我覺得，'.$Answer.'。');
+    return buildTextMessage('我想想喔……我覺得'.$Answer.'。');
 	}
 	else    
 	//以下是運勢功能
@@ -152,7 +152,7 @@ function mobile($inputStr) {
                 {
                     "type": "message",
                     "label": "系統指令說明",
-                    "text": "骰子狗CC"
+                    "text": "秘書CC"
                 },
                 {
                     "type": "message",
@@ -173,7 +173,7 @@ function mobile($inputStr) {
 				{
 					"type": "message",
 					"label": "系統指令說明",
-					"text": "骰子狗pb"
+					"text": "秘書pb"
 				},
 				{
 					"type": "message",
@@ -195,17 +195,17 @@ function mobile($inputStr) {
 				{
 					"type": "message",
 					"label": "附加功能指令說明",
-					"text": "骰子狗其他"
+					"text": "秘書其他"
 				},
 				{
 					"type": "message",
 					"label": "隨機選擇範例",
-					"text": "骰子狗，請幫我選宵夜要吃 鹽酥雞 滷味 吃p吃，不准吃"
+					"text": "秘書，請幫我選宵夜要吃 鹽酥雞 滷味 滷肉飯"
 				},
 				{
 					"type": "message",
 					"label": "圖片回應範例",
-					"text": "我覺得不行.jpg"
+					"text": "我覺得不行"
 				}
 						
 			]
