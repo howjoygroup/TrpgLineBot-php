@@ -258,7 +258,7 @@
 		},
 		{
 		"type":	"carousel",
-		"altText": "keyWord附加功能範例",
+		"altText": "秘書附加功能範例",
 		"columns":
 			[
 				{
@@ -288,9 +288,9 @@
 	]
   },
   {
-	"memo": "關於keyWord",
+	"memo": "關於秘書",
 	
-    "Syskey": ["關於keyWord"],
+    "Syskey": ["關於秘書"],
 	
 	"about":
 	[
@@ -317,7 +317,7 @@
   {
 	"memo": "一般說明",
 	
-	"Syskey": ["keyWord說明"],
+	"Syskey": ["秘書說明"],
 	
     "about":
 	[
@@ -325,7 +325,7 @@
 		"type":	"text",
 		
 		"text":
-		"《keyWord功能一覽》\nkeyWord是為了TRPG的擲骰而設計而成的機器人。目前支援的骰組如下：\n\n【基本】骰組\n【擴充】骰組\n【克蘇魯的呼喚 CoC7th】骰組\n【PBTA】骰組\n\n需要骰組說明請輸入：\n　keyWord說明 {骰組中英文名稱或簡稱}\n\n《附加功能》\n與擲骰無關的附加功能，請輸入：\n　keyWord說明 其他\n\n《關於keyWord與錯誤回報》\n請輸入：\n　關於keyWord說明\n　keyWord錯誤回報說明"
+		"《秘書功能一覽》\nkeyWord是為了TRPG的擲骰而設計而成的機器人。目前支援的骰組如下：\n\n【基本】骰組\n【擴充】骰組\n【克蘇魯的呼喚 CoC7th】骰組\n【PBTA】骰組\n\n需要骰組說明請輸入：\n　keyWord說明 {骰組中英文名稱或簡稱}\n\n《附加功能》\n與擲骰無關的附加功能，請輸入：\n　keyWord說明 其他\n\n《關於keyWord與錯誤回報》\n請輸入：\n　關於keyWord說明\n　keyWord錯誤回報說明"
 		},
 		{
 		"type":	"carousel",
@@ -339,12 +339,12 @@
 						{
 						"type": "message",
 						"label": "【基本】骰組",
-						"text": "keyWord說明 基本"
+						"text": "秘書說明 基本"
 						},
 						{
 						"type": "message",
 						"label": "【擴充】骰組",
-						"text": "keyWord說明 擴充"
+						"text": "秘書說明 擴充"
 						},
 						{
 						"type": "message",
@@ -360,12 +360,12 @@
 						{
 						"type": "message",
 						"label": "【克蘇魯的呼喚 CoC7th】",
-						"text": "keyWord說明 coc"
+						"text": "秘書說明 coc"
 						},
 						{
 						"type": "message",
 						"label": "【PBTA】",
-						"text": "keyWord說明 pbta"
+						"text": "秘書說明 pbta"
 						},
 						{
 						"type": "message",
@@ -385,13 +385,13 @@
 						},
 						{
 						"type": "message",
-						"label": "【關於keyWord】",
-						"text": "關於keyWord說明"
+						"label": "【關於秘書】",
+						"text": "關於秘書說明"
 						},
 						{
 						"type": "message",
 						"label": "【錯誤回報】",
-						"text": "keyWord錯誤回報說明"
+						"text": "秘書錯誤回報說明"
 						}
 					]
 				}
