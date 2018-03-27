@@ -101,7 +101,7 @@ function KeyWordReply($inputStr) {
   //沒有觸發關鍵字則是這個
 	
 	$rplyArr = $content[0]['text'];
-	return buildTextMessage($rplyArr[Dice(count($rplyArr))-1]);
+	return null;
 	
 }
 
