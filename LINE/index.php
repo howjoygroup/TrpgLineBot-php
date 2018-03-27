@@ -19,6 +19,7 @@ require_once('./nomalReply.php');
 require_once('./Dice/Dice_CoC7th.php');
 require_once('./Dice/Dice_nomalDice.php');
 require_once('./Dice/Dice_pbta.php');
+require_once('./Dice/Dice_extraDice.php');
 //主要的全域變數，只有簡易的API，覺得難過香菇
 $channelAccessToken = getenv('LINE_CHANNEL_ACCESSTOKEN');
 $channelSecret = getenv('LINE_CHANNEL_SECRET');
@@ -202,6 +203,7 @@ function parseInput ($inputStr){
 		
 	}else if(stristr($inputStr,$replyKeyword) != false || stristr($inputStr,$replyKeyword2) != false){
 		return KeyWordReply($inputStr);	
+		
 	}else if(stristr(strtolower($inputStr),".jpg") != false|| stristr(strtolower($inputStr),"ry") != false){
 		return SendImg($inputStr);
 		
@@ -210,8 +212,10 @@ function parseInput ($inputStr){
 		
 	}else if(preg_match ("/d/i", $inputStr) !=false){
 		return nomalDiceRoller($inputStr);
+		
+	}else if(preg_match ("/b/i", $inputStr) !=false){
+		return bDice($inputStr);
 	}
-	
 	
 	else {
 	return null;
