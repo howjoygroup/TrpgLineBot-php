@@ -257,10 +257,10 @@ function ccCreate($inputStr){
     else if ($old >= 40) {
 	$ReStr = $ReStr.'從[力量]、[體質]或[靈活]]中「總共」減去'.$AdjustValue['Debuff']."點
 （請自行手動選擇計算）。
-將APP減去".$AdjustValue['AppDebuff'].'點。可做'.$AdjustValue['EDUinc'].'次EDU的成長擲骰。' ;
+將[外表]減去".$AdjustValue['AppDebuff'].'點。可做'.$AdjustValue['EDUinc'].'次[教育]的成長擲骰。' ;
     }
     else {
-      $ReStr = $ReStr.'可做'.$AdjustValue['EDUinc'].'次EDU的成長擲骰。' ;
+      $ReStr = $ReStr.'可做'.$AdjustValue['EDUinc'].'次[教育]的成長擲骰。' ;
     }
     
     $ReStr = $ReStr."\n==";
