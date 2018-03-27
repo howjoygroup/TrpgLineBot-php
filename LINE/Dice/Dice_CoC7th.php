@@ -192,20 +192,20 @@ function ccCreate($inputStr){
   //如果最後面不是數字，就當作是常見的房規創角
 	if (preg_match ("/\d+$/", $inputStr) == false ){
   
-		$finalStr = "《悠子、冷嵐房規創角擲骰》\n==\n骰七次3D6取五次，\n決定STR、CON、DEX、APP、POW。\n";
+		$finalStr = "《悠子、冷嵐房規創角擲骰》\n==\n骰七次3D6取五次，\n決定[力量]、[體質]、[靈活]、[外表]、[意志]。\n";
 
 		//DiceCal又被拿出來用了
 		for ($i=1 ; $i<=7 ;$i++){
 			$finalStr = $finalStr."\n".$i.'# '.DiceCal('3d6*5')['eqStr'];
 		}
 
-		$finalStr = $finalStr."\n==\n骰四次2D6+6取三次，\n決定SIZ、INT、EDU。\n";
+		$finalStr = $finalStr."\n==\n骰四次2D6+6取三次，\n決定[體型]、[智力]、[教育]。\n";
 
 		for ($i=1 ; $i<=4 ;$i++){
 			$finalStr = $finalStr."\n".$i.'# '.DiceCal('(2d6+6)*5')['eqStr'];
 		}
 
-		$finalStr = $finalStr."\n==\n骰兩次3D6取一次，\n決定LUK。\n";
+		$finalStr = $finalStr."\n==\n骰兩次3D6取一次，\n決定[幸運]。\n";
 		for ($i=1 ; $i<=2 ;$i++){
 			$finalStr = $finalStr."\n".$i.'# '.DiceCal('3d6*5')['eqStr'];
 		} 
@@ -250,12 +250,12 @@ function ccCreate($inputStr){
     $ReStr = $ReStr."==\n年齡調整：";
     
     if ($old < 20) {
-      $ReStr = $ReStr."從STR、SIZ擇一減去".$AdjustValue['Debuff']."點
+      $ReStr = $ReStr."從[力量]、[體型]擇一減去".$AdjustValue['Debuff']."點
 （請自行手動選擇計算）。
-將EDU減去5點。LUK可擲兩次取高。" ;
+將[教育]減去5點。[幸運]可擲兩次取高。" ;
     }
     else if ($old >= 40) {
-	$ReStr = $ReStr.'從STR、CON或DEX中「總共」減去'.$AdjustValue['Debuff']."點
+	$ReStr = $ReStr.'從[力量]、[體質]或[靈活]]中「總共」減去'.$AdjustValue['Debuff']."點
 （請自行手動選擇計算）。
 將APP減去".$AdjustValue['AppDebuff'].'點。可做'.$AdjustValue['EDUinc'].'次EDU的成長擲骰。' ;
     }
@@ -267,31 +267,31 @@ function ccCreate($inputStr){
     
     if ($old>=40){ $ReStr = $ReStr."\n（以下箭號三項，自選共減".$AdjustValue['Debuff'].'點。）' ;}
     if ($old<20){ $ReStr = $ReStr."\n（以下箭號兩項，擇一減去".$AdjustValue['Debuff'].'點。）' ;}    
-    $ReStr = $ReStr."\nＳＴＲ：".DiceCal('3d6*5')['eqStr'];
+    $ReStr = $ReStr."\n力量：".DiceCal('3d6*5')['eqStr'];
     if ($old>=40){$ReStr = $ReStr.' ← 共減'.$AdjustValue['Debuff'] ;}
     if ($old<20){ $ReStr = $ReStr.' ←擇一減'.$AdjustValue['Debuff'] ;}
-    $ReStr = $ReStr."\nＣＯＮ：".DiceCal('3d6*5')['eqStr'];
+    $ReStr = $ReStr."\n體質：".DiceCal('3d6*5')['eqStr'];
     if ($old>=40){ $ReStr = $ReStr.' ← 共減'.$AdjustValue['Debuff'];}
-    $ReStr = $ReStr. "\nＤＥＸ：".DiceCal('3d6*5')['eqStr'];
+    $ReStr = $ReStr. "\n靈活：".DiceCal('3d6*5')['eqStr'];
     if ($old>=40){ $ReStr = $ReStr.' ← 共減'.$AdjustValue['Debuff'] ;}
-    if ($old>=40){ $ReStr = $ReStr."\nＡＰＰ：".DiceCal('3d6*5-'.$AdjustValue['AppDebuff'])['eqStr'];}
-    else{ $ReStr = $ReStr."\nＡＰＰ：".DiceCal('3d6*5')['eqStr'];}
-    $ReStr = $ReStr."\nＰＯＷ：".DiceCal('3d6*5')['eqStr'];
-    $ReStr = $ReStr."\nＳＩＺ：".DiceCal('(2d6+6)*5')['eqStr'];
+    if ($old>=40){ $ReStr = $ReStr."\n外表：".DiceCal('3d6*5-'.$AdjustValue['AppDebuff'])['eqStr'];}
+    else{ $ReStr = $ReStr."\n外表：".DiceCal('3d6*5')['eqStr'];}
+    $ReStr = $ReStr."\n意志：".DiceCal('3d6*5')['eqStr'];
+    $ReStr = $ReStr."\n體型：".DiceCal('(2d6+6)*5')['eqStr'];
     if ($old<20){ $ReStr = $ReStr.' ←擇一減'.$AdjustValue['Debuff'] ;}
-    $ReStr = $ReStr."\nＩＮＴ：".DiceCal('(2d6+6)*5')['eqStr'];         
-    if ($old<20){ $ReStr = $ReStr."\nＥＤＵ：".DiceCal('(2d6+6)*5-5')['eqStr'];}
+    $ReStr = $ReStr."\n智慧：".DiceCal('(2d6+6)*5')['eqStr'];         
+    if ($old<20){ $ReStr = $ReStr."\n教育：".DiceCal('(2d6+6)*5-5')['eqStr'];}
     else {
 		$ReStr = $ReStr."\n==";
       
 		$firstEDU = DiceCal('(2d6+6)*5')['eq'];
 		$tempEDU = eval("return $firstEDU;");
       
-		$ReStr = $ReStr."\nＥＤＵ初始值：".$firstEDU.' = '.$tempEDU;
+		$ReStr = $ReStr."\n[教育]初始值：".$firstEDU.' = '.$tempEDU;
 
       for ($i = 1 ; $i <= $AdjustValue['EDUinc'] ; $i++){
         $EDURoll = Dice(100);
-        $ReStr = $ReStr."\n第".$i.'次EDU成長 → '.$EDURoll;
+        $ReStr = $ReStr."\n第".$i.'次[教育]成長 → '.$EDURoll;
 
 
         if ($EDURoll>$tempEDU) {
@@ -304,12 +304,12 @@ function ccCreate($inputStr){
         }
       }
       $ReStr = $ReStr."\n";
-      $ReStr = $ReStr."\nＥＤＵ最終值：".$tempEDU;
+      $ReStr = $ReStr."\n[教育]最終值：".$tempEDU;
     }
     $ReStr = $ReStr."\n==";
 
-    $ReStr = $ReStr."\nＬＵＫ：".DiceCal('3d6*5')['eqStr'];    
-    if ($old<20){ $ReStr = $ReStr."\nＬＵＫ加骰：".DiceCal('3D6*5')['eqStr'];}
+    $ReStr = $ReStr."\n[幸運]：".DiceCal('3d6*5')['eqStr'];    
+    if ($old<20){ $ReStr = $ReStr."\n[幸運]加骰：".DiceCal('3D6*5')['eqStr'];}
 
 
     return buildTextMessage($ReStr);
