@@ -1,5 +1,4 @@
 <?php
-
 function bDice($inputStr){
 	error_log("是【B骰】啦，媽ㄉ發科！");
 	
@@ -102,10 +101,7 @@ function bDice($inputStr){
 		}
 	$finalStr = $finalStr."\n所有骰子總和：".$allAdd ;
 	return buildTextMessage($finalStr);
-
 }
-
-
 //骰B骰用的
 function rollBDice($DiceToRoll,$equa,$bonusEqra){
 	$succesCum = 0;
@@ -130,7 +126,6 @@ function rollBDice($DiceToRoll,$equa,$bonusEqra){
 		$diceSid = explode('b',$tempMatch)[1];
 		
 		if($diceNum >= 200 ){return Array("不支援200顆以上的擲骰。",0,null,0);}
-
 		
 		for ($i = 1; $i <= $diceNum; $i++) {
 			
@@ -173,4 +168,3 @@ function rollBDice($DiceToRoll,$equa,$bonusEqra){
 	
 	return Array($finalStr,$succesCum,$bouns,$bounsCum,$allAdd,$succesAdd);
 }
-
