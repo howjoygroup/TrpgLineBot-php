@@ -116,7 +116,7 @@ function KeyWordReply($inputStr) {
 				);
 				return $testMessage->send($replyArr);				
 			}
-			else if($com==3){
+			else{
 				$testMessage = new MutiMessage();
 				$replyArr = Array(
 				$testMessage->text('我出布'),
@@ -124,12 +124,59 @@ function KeyWordReply($inputStr) {
 				);
 				return $testMessage->send($replyArr);					
 			}
-			else{
-				return $testMessage->text('好好出呀~~不能作弊!!!');
-			}
-	
-			
 		}
+		if(stristr($inputStr, '石頭') != false) {
+			if($com==1){
+				$testMessage = new MutiMessage();
+				$replyArr = Array(
+				$testMessage->text('我出剪刀'),
+				$testMessage->text('可惡...我輸惹 ゜。。゜(ノД‵)ノ・゜'),
+				);
+				return $testMessage->send($replyArr);
+			}
+			else if($com==2){
+				$testMessage = new MutiMessage();
+				$replyArr = Array(
+				$testMessage->text('我出石頭'),
+				$testMessage->text('平手 (  艸)'),
+				);
+				return $testMessage->send($replyArr);				
+			}
+			else{
+				$testMessage = new MutiMessage();
+				$replyArr = Array(
+				$testMessage->text('我出布'),
+				$testMessage->text('我贏了 (｀・ω・´)b'),
+				);
+				return $testMessage->send($replyArr);					
+			}
+		}
+		if(stristr($inputStr, '布') != false) {
+			if($com==1){
+				$testMessage = new MutiMessage();
+				$replyArr = Array(
+				$testMessage->text('我出剪刀'),
+				$testMessage->text('我贏了 (｀・ω・´)b'),
+				);
+				return $testMessage->send($replyArr);
+			}
+			else if($com==2){
+				$testMessage = new MutiMessage();
+				$replyArr = Array(
+				$testMessage->text('我出石頭'),
+				$testMessage->text('可惡...我輸惹 ゜。。゜(ノД‵)ノ・゜'),
+				);
+				return $testMessage->send($replyArr);				
+			}
+			else{
+				$testMessage = new MutiMessage();
+				$replyArr = Array(
+				$testMessage->text('我出布'),
+				$testMessage->text('平手 (  艸)'),
+				);
+				return $testMessage->send($replyArr);					
+			}
+		}		
 		
 	}
 	
