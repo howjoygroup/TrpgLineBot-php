@@ -60,7 +60,7 @@ function KeyWordReply($inputStr) {
 		if(stristr($Answer, '選') != false||
 		stristr($Answer, '決定') != false||
 		stristr($Answer, '挑') != false||
-		stristr($Answer, '骰子狗') != false) {
+		stristr($Answer, '秘書') != false) {
 			$rplyArr = Array(
                  '人生是掌握在自己手裡的',
                  '每個都很好哦',
@@ -190,7 +190,7 @@ function mobile($inputStr) {
 		},
 		{
 			"title": "《附加功能》",
-			"text": "附加功能相關指令，關鍵字為「骰子狗」以及 .jpg 和 (ry",
+			"text": "附加功能相關指令，關鍵字為「秘書」以及 .jpg 和 (ry",
 			"actions": [
 				{
 					"type": "message",
