@@ -98,7 +98,7 @@ function KeyWordReply($inputStr) {
 		}
 	}
 	if(stristr($inputStr, '猜拳') != false) {
-		for ($i=1 ; $i<=1 ;$i++){
+
 			$testMessage = new MutiMessage();
 			$replyArr = Array(
 			$testMessage->text('來猜拳呀'),
@@ -117,7 +117,7 @@ function KeyWordReply($inputStr) {
 				}
 			
 			}
-		}
+		
 	}
 	
   //沒有觸發關鍵字則是這個
