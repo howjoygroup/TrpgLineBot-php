@@ -98,7 +98,7 @@ function KeyWordReply($inputStr) {
 		}
 	}
 	if(stristr($inputStr, '猜拳') != false) {
-
+			$i=2;
 			$testMessage = new MutiMessage();
 			$replyArr = Array(
 			$testMessage->text('來猜拳呀'),
