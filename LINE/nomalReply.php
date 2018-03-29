@@ -99,7 +99,6 @@ function KeyWordReply($inputStr) {
 	}
 	if(stristr($inputStr, '猜拳') != false) {
 		$com=Dice(3);/*1剪刀2石頭3布*/
-		return buildTextMessage($com);
 		if(stristr($inputStr, '剪刀') != false) {
 			if($com==1){
 				$testMessage = new MutiMessage();
