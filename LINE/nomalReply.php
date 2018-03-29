@@ -107,6 +107,7 @@ function KeyWordReply($inputStr) {
 			);
 			return $testMessage->send($replyArr);
 			while($i==2){
+				return $testMessage->text('我出剪刀，平手 (  艸)\n\n要繼續嗎?\n\n結束打0');
 				$com=rand(1,3);/*1剪刀2石頭3布*/
 				if(stristr($inputStr, '剪刀') != false) {
 					if($com==1){
