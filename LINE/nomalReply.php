@@ -101,13 +101,28 @@ function KeyWordReply($inputStr) {
 		$com=rand(1,3);/*1剪刀2石頭3布*/
 		if(stristr($inputStr, '剪刀') != false) {
 			if($com==1){
-				return $testMessage->text('我出剪刀，平手 (  艸)');
+				$testMessage = new MutiMessage();
+				$replyArr = Array(
+				$testMessage->text('我出剪刀'),
+				$testMessage->text('平手 (  艸)'),
+				);
+				return $testMessage->send($replyArr);
 			}
-			if($com==2){
-				return $testMessage->text('我出石頭，我贏了 (｀・ω・´)b');
+			else if($com==2){
+				$testMessage = new MutiMessage();
+				$replyArr = Array(
+				$testMessage->text('我出石頭'),
+				$testMessage->text('我贏了 (｀・ω・´)b'),
+				);
+				return $testMessage->send($replyArr);				
 			}
-			if($com==3){
-				return $testMessage->text('我出布，可惡...我輸惹 ゜。。゜(ノД‵)ノ・゜');
+			else if($com==3){
+				$testMessage = new MutiMessage();
+				$replyArr = Array(
+				$testMessage->text('我出布'),
+				$testMessage->text('可惡...我輸惹 ゜。。゜(ノД‵)ノ・゜'),
+				);
+				return $testMessage->send($replyArr);					
 			}
 			else{
 				return $testMessage->text('好好出呀~~不能作弊!!!');
