@@ -204,7 +204,7 @@ function parseInput ($inputStr){
 	}if(stristr($inputStr,$replyKeyword) != false || stristr($inputStr,$replyKeyword2) != false){
 		return KeyWordReply($inputStr);	
 		
-	}if(stristr(strtolower($inputStr),".jpg") != false|| stristr(strtolower($inputStr),"ry") != false){
+	}if(stristr(strtolower($inputStr),".jpg") != false|| strtolower($inputStr) != false){
 		return SendImg($inputStr);
 		
 	}if(stristr($inputStr,"mobile") != false){
