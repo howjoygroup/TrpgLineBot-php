@@ -98,26 +98,23 @@ function KeyWordReply($inputStr) {
 		}
 	}
 	if(stristr($inputStr, '猜拳') != false) {
-			$i=2;
-			$testMessage = new MutiMessage();
-			$replyArr = Array(
-			$testMessage->text('來猜拳呀'),
-			$testMessage->text('歡迎大家開始下注'),
-			$testMessage->sticker(1,2)
-			);
-			return $testMessage->send($replyArr);
-			while($i==2){
-				return $testMessage->text('我出剪刀，平手 (  艸)\n\n要繼續嗎?\n\n結束打0');
-				$com=rand(1,3);/*1剪刀2石頭3布*/
-				if(stristr($inputStr, '剪刀') != false) {
-					if($com==1){
-						return $testMessage->text('我出剪刀，平手 (  艸)\n\n要繼續嗎?\n\n結束打0');
-						if(stristr($inputStr, '0') != false) {$i++;}
-					}
-				break;
-				}
-			
+		$com=rand(1,3);/*1剪刀2石頭3布*/
+		if(stristr($inputStr, '剪刀') != false) {
+			if($com==1){
+				return $testMessage->text('我出剪刀，平手 (  艸)');
 			}
+			if($com==2){
+				return $testMessage->text('我出石頭，我贏了 (｀・ω・´)b');
+			}
+			if($com==3){
+				return $testMessage->text('我出布，可惡...我輸惹 ゜。。゜(ノД‵)ノ・゜');
+			}
+			else{
+				return $testMessage->text('好好出呀~~不能作弊!!!');
+			}
+	
+			
+		}
 		
 	}
 	
