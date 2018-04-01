@@ -139,7 +139,7 @@ function mahjong($inputStr) {
 		$content .= fread($handle, 10000);
 	}
 	fclose($handle);	
-	$content = json_decode($content, true);
+
 	$chack="";
 	$textArr="";
 	$name="";
