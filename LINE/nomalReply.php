@@ -132,8 +132,10 @@ function SendImg($inputStr) {
 	
 	return null;
 }
+
+//麻將玩家查詢系統
 function mahjong($inputStr) { 
-	return buildTextMessage('姓名:'.$name.'\n歐付寶ID:'.$ID.'\n綁定代理:'.$ag);//測試
+	return buildTextMessage('姓名:');//測試
 	$handle = fopen("https://docs.google.com/spreadsheets/d/e/2PACX-1vS5-Zf-CaUv2tFQiZCauORhbnAcofTBHRLq5bojO_I41s4snbod7z_LEMRuKy_E8mHeZIjq9t4Nrxus/pub?output=xlsx","r");	
 	$content = "";
 	while (!feof($handle)) {
