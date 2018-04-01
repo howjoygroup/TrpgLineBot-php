@@ -132,6 +132,41 @@ function SendImg($inputStr) {
 	
 	return null;
 }
+function mahjong($inputStr) { 
+	$handle = fopen("https://docs.google.com/spreadsheets/d/e/2PACX-1vS5-Zf-CaUv2tFQiZCauORhbnAcofTBHRLq5bojO_I41s4snbod7z_LEMRuKy_E8mHeZIjq9t4Nrxus/pub?output=xlsx","r");	
+	$content = "";
+	while (!feof($handle)) {
+		$content .= fread($handle, 10000);
+	}
+	fclose($handle);	
+	$content = json_decode($content, true);
+	$chack="";
+	$textArr="";
+	$name="";
+	$ID="";
+	$ag="";
+	for($i=1;$i<=1;$i++){
+		$j=2;
+		while($j>=2){
+			$chack=$content->getCellByColumnAndRow($i, $j);
+			if($chack==""){
+				$j=0;
+			}
+			else{
+				if(stristr($inputStr, $chack) != false){
+					$name=$content->getCellByColumnAndRow($i+1, $j);
+					$ID=$content->getCellByColumnAndRow($i+2, $j);
+					$ag=$content->getCellByColumnAndRow($i+3, $j);
+					$j=0;
+					return buildTextMessage('姓名:'.$name.'\n歐付寶ID:'.$ID.'\n綁定代理:'.$ag);
+				else{
+					$j++;
+				}	
+			}
+		}
+	}
+		
+}
 
 //手機才看得到的訊息。
 function mobile($inputStr) { 
