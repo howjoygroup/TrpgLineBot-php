@@ -218,8 +218,6 @@ function parseInput ($inputStr){
 	}if(preg_match ("/b/i", $inputStr) !=false){
 		return bDice($inputStr);
 	
-	}if(preg_match ("/\d/", $inputStr) !=false){
-		return mahjong($inputStr);	
 	}
 	else {
 	return null;
