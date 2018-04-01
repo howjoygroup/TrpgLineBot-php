@@ -145,6 +145,7 @@ function mahjong($inputStr) {
 	$name="";
 	$ID="";
 	$ag="";
+	return buildTextMessage('姓名:'.$name.'\n歐付寶ID:'.$ID.'\n綁定代理:'.$ag);//測試
 	for($i=1;$i<=1;$i++){
 		$j=2;
 		while($j>=2){
