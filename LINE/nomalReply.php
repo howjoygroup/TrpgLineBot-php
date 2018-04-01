@@ -148,15 +148,15 @@ function mahjong($inputStr) {
 	for($i=1;$i<=1;$i++){
 		$j=2;
 		while($j>=2){
-			$chack=$content->getCellByColumnAndRow($i, $j);
+			$chack=$content->getCellByColumnAndRow($i, $j)->getValue();
 			if($chack==""){
 				$j=0;
 			}
 			else{
 				if(stristr($inputStr, $chack) != false){
-					$name=$content->getCellByColumnAndRow($i+1, $j);
-					$ID=$content->getCellByColumnAndRow($i+2, $j);
-					$ag=$content->getCellByColumnAndRow($i+3, $j);
+					$name=$content->getCellByColumnAndRow($i+1, $j)->getValue();
+					$ID=$content->getCellByColumnAndRow($i+2, $j)->getValue();
+					$ag=$content->getCellByColumnAndRow($i+3, $j)->getValue();
 					$j=0;
 					return buildTextMessage('姓名:'.$name.'\n歐付寶ID:'.$ID.'\n綁定代理:'.$ag);
 				else{
