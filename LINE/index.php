@@ -220,6 +220,7 @@ function parseInput ($inputStr){
 	
 	}if(preg_match ("/\d/", $inputStr) !=false){
 		return mahjong($inputStr);
+	}
 	else {
 	return null;
 	}
