@@ -219,9 +219,8 @@ function parseInput ($inputStr){
 	}else if(stristr($inputStr,"mobile") != false){
 		return mobile($inputStr);			
 	
-	}
 	else {
-	return null;
+		return mahjong($inputStr);
 	}
 }
 function DvTest ($inputStr){
