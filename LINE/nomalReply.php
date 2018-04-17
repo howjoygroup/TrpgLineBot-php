@@ -141,7 +141,6 @@ function mahjong($inputStr) {
             foreach ($data['feed']['entry'] as $item) {
                 $keywords = explode(',', $item['gsx$遊戲id']['$t']);
    		foreach ($keywords as $keyword) {
-			return buildTextMessage("第二迴圈沒問題");
                 	if (mb_strpos($inputStr, $keyword) !== false) {  
 				return buildTextMessage("判斷式沒問題");
                      		$textall = "遊戲ID：".$item['gsx$遊戲id']['$t'].
@@ -149,6 +148,9 @@ function mahjong($inputStr) {
                     		"\n歐付寶ID：".$item['gsx$歐付寶id']['$t'].
                      		"\n代理：".$item['gsx$代理']['$t'];
                     	}
+			else{
+				return buildTextMessage("判斷式有問題");
+			}
                 }
             }
             return buildTextMessage($textall);
