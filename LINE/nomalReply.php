@@ -135,22 +135,18 @@ function SendImg($inputStr) {
 
 //麻將玩家查詢系統
 function mahjong($inputStr) {
-   $textall="查詢失敗";
+      $textall="查詢失敗";
             $json = file_get_contents('https://spreadsheets.google.com/feeds/list/1heN-wjEuXEfqBXdN8En0WMtfR99pzg7MufiWMMi41U0/1/public/values?alt=json');
             $data = json_decode($json, true);
             foreach ($data['feed']['entry'] as $item) {
                 $keywords = explode(',', $item['gsx$遊戲id']['$t']);
-   		foreach ($keywords as $keyword) {
-                	if (mb_strpos($inputStr, $keyword) !== false) {  
-                     		$textall = "遊戲ID：".$item['gsx$遊戲id']['$t'].
-                    		"\n本名：".$item['gsx$本名']['$t'].
-                    		"\n歐付寶ID：".$item['gsx$歐付寶id']['$t'].
-                     		"\n代理：".$item['gsx$代理']['$t'];
-				return buildTextMessage("抓取試算表自串成功");
-                    	}
-			else{
-				return buildTextMessage("判斷式有問題");
-			}
+     		 foreach ($keywords as $keyword) {
+                 if ($inputStr== $keyword) {  
+                       	$textall = "遊戲ID：".$item['gsx$遊戲id']['$t'].
+                      	"\n本名：".$item['gsx$本名']['$t'].
+                      	"\n歐付寶ID：".$item['gsx$歐付寶id']['$t'].
+                       	"\n代理：".$item['gsx$代理']['$t'];
+                     }
                 }
             }
             return buildTextMessage($textall);
