@@ -142,11 +142,11 @@ function mahjong($inputStr) {
                 $keywords = explode(',', $item['gsx$遊戲id']['$t']);
    		foreach ($keywords as $keyword) {
                 	if (mb_strpos($inputStr, $keyword) !== false) {  
-				return buildTextMessage("判斷式沒問題");
                      		$textall = "遊戲ID：".$item['gsx$遊戲id']['$t'].
                     		"\n本名：".$item['gsx$本名']['$t'].
                     		"\n歐付寶ID：".$item['gsx$歐付寶id']['$t'].
                      		"\n代理：".$item['gsx$代理']['$t'];
+				return buildTextMessage("抓取試算表自串成功");
                     	}
 			else{
 				return buildTextMessage("判斷式有問題");
