@@ -220,7 +220,7 @@ function parseInput ($inputStr){
 		return mobile($inputStr);			
 	
 	}else {
-		return null;
+		return mahjong($inputStr);
 	}
 }
 function DvTest ($inputStr){
