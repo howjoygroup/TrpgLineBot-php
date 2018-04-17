@@ -135,10 +135,10 @@ function SendImg($inputStr) {
 
 //麻將玩家查詢系統
 function mahjong($inputStr) {
-	return buildTextMessage("已進入麻將玩家查詢系統");
+
 	$json = file_get_contents('https://spreadsheets.google.com/feeds/list/1XCyhDXNJNP-tT3PG8VCe82y79fNoVigo-w8QF_SiyTU/1/public/values?alt=json');	
 	$data = json_decode($json,true);
-	foreach($data['feed'] ['entry']as $item){
+	foreach($data['feed']['entry'] as $item){
 		$keywords = explode(',',$item['gsx$遊戲id']['$t']);
 		foreach($keywords as $keyword){
 			if(mb_strpos($inputStr,$keyword) != false){
