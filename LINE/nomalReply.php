@@ -142,6 +142,7 @@ function mahjong($inputStr) {
 		$keywords = explode(',',$item['gsx$遊戲id']['$t']);
 		foreach($keywords as $keyword){
 			if(mb_strpos($inputStr,$keyword) != false){
+				return buildTextMessage("已進入麻將玩家查詢系統");
 				$textall="遊戲ID:".$item['gsx$遊戲id']['$t'].
 				"\n本名:".$item['gsx$本名']['$t'].
 				"\n歐付寶ID:".$item['gsx$歐付寶id']['$t'].
