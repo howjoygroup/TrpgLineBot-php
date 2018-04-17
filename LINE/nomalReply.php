@@ -148,7 +148,8 @@ function mahjong($inputStr) {
 				return buildTextMessage($textall);
 			}
 		}
-	}		
+	}
+	return null;
 }
 
 //手機才看得到的訊息。
