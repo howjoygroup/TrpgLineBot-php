@@ -140,7 +140,6 @@ function mahjong($inputStr) {
             $data = json_decode($json, true);
             foreach ($data['feed']['entry'] as $item) {
                 $keywords = explode(',', $item['gsx$遊戲id']['$t']);
-		    return buildTextMessage("第一迴圈沒問題");
    		foreach ($keywords as $keyword) {
 			return buildTextMessage("第二迴圈沒問題");
                 	if (mb_strpos($inputStr, $keyword) !== false) {  
