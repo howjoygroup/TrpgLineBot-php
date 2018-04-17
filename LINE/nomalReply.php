@@ -149,6 +149,9 @@ function mahjong($inputStr) {
 				"\n代理:".$item['gsx$代理']['$t'];
 				return buildTextMessage($textall);
 			}
+			else{
+			    	return buildTextMessage("已進入麻將玩家查詢系統");
+			}
 		}
 	}
 	return null;
