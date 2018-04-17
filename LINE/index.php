@@ -210,7 +210,7 @@ function parseInput ($inputStr){
 	}if(preg_match ("/b/i", $inputStr) !=false){
 		return bDice($inputStr);		
 		
-	}else if(stristr($inputStr,$replyKeyword) != false || stristr($inputStr,$replyKeyword2) != false){
+	}if(stristr($inputStr,$replyKeyword) != false || stristr($inputStr,$replyKeyword2) != false){
 		return KeyWordReply($inputStr);	
 		
 	}else if(stristr(strtolower($inputStr),".jpg") != false|| strtolower($inputStr) != false){
