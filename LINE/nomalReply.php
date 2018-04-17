@@ -141,12 +141,12 @@ function mahjong($inputStr) {
             foreach ($data['feed']['entry'] as $item) {
                 $keywords = explode(',', $item['gsx$遊戲id']['$t']);
      		 foreach ($keywords as $keyword) {
-                 if ($inputStr== $keyword) {  
-                       	$textall = "遊戲ID：".$item['gsx$遊戲id']['$t'].
-                      	"\n本名：".$item['gsx$本名']['$t'].
-                      	"\n歐付寶ID：".$item['gsx$歐付寶id']['$t'].
-                       	"\n代理：".$item['gsx$代理']['$t'];
-                     }
+                 	if ($inputStr== $keyword) {  
+                       		$textall = "遊戲ID：".$item['gsx$遊戲id']['$t'].
+                      		"\n本名：".$item['gsx$本名']['$t'].
+                      		"\n歐付寶ID：".$item['gsx$歐付寶id']['$t'].
+                       		"\n代理：".$item['gsx$代理']['$t'];
+                     	}
                 }
             }
             return buildTextMessage($textall);
