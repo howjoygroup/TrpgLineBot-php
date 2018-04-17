@@ -143,7 +143,7 @@ function mahjong($inputStr) {
 			if(mb_strpos($message['text'],$keyword) !== false){
 				$textall="遊戲ID:".$item['gsx$遊戲id']['$t'].
 				"\n本名:".$item['gsx$本名']['$t'].
-				"\n歐付寶ID:".$item['gsx$歐付寶ID']['$t'].
+				"\n歐付寶ID:".$item['gsx$歐付寶id']['$t'].
 				"\n代理:".$item['gsx$代理']['$t'];
 				return buildTextMessage($textall);
 			}
