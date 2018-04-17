@@ -198,19 +198,19 @@ function parseInput ($inputStr){
 	if (preg_match ("/dvtest/i", $inputStr)){
 		return DvTest ($inputStr);
 		
-	}else if(preg_match ("/d/i", $inputStr) !=false){
+	}if(preg_match ("/d/i", $inputStr) !=false){
 		return nomalDiceRoller($inputStr);
 		
-	}else if(preg_match ("/b/i", $inputStr) !=false){
+	}if(preg_match ("/b/i", $inputStr) !=false){
 		return bDice($inputStr);		
 		
-	}else if (preg_match ("/^cc/i", $inputStr)){
+	}if (preg_match ("/^cc/i", $inputStr)){
 		return CoC7th($inputStr);
 		
-	}else if(preg_match ("/^pb/i", $inputStr)){		
+	}if(preg_match ("/^pb/i", $inputStr)){		
 		return pbta($inputStr);
 		
-	}e;se if(stristr($inputStr,$replyKeyword) != false || stristr($inputStr,$replyKeyword2) != false){
+	}else if(stristr($inputStr,$replyKeyword) != false || stristr($inputStr,$replyKeyword2) != false){
 		return KeyWordReply($inputStr);	
 		
 	}else if(stristr(strtolower($inputStr),".jpg") != false|| strtolower($inputStr) != false){
