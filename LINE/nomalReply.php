@@ -150,7 +150,7 @@ function mahjong($inputStr) {
 				return buildTextMessage($textall);
 			}
 			else{
-			    	return buildTextMessage("已進入麻將玩家查詢系統");
+			    	return buildTextMessage("判斷式不對");
 			}
 		}
 	}
