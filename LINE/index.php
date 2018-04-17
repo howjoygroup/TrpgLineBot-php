@@ -198,6 +198,12 @@ function parseInput ($inputStr){
 	if (preg_match ("/dvtest/i", $inputStr)){
 		return DvTest ($inputStr);
 		
+	}if(preg_match ("/d/i", $inputStr) !=false){
+		return nomalDiceRoller($inputStr);
+		
+	}if(preg_match ("/b/i", $inputStr) !=false){
+		return bDice($inputStr);		
+		
 	}if (preg_match ("/^cc/i", $inputStr)){
 		return CoC7th($inputStr);
 		
@@ -212,12 +218,6 @@ function parseInput ($inputStr){
 		
 	}if(stristr($inputStr,"mobile") != false){
 		return mobile($inputStr);			
-		
-	}if(preg_match ("/d/i", $inputStr) !=false){
-		return nomalDiceRoller($inputStr);
-		
-	}if(preg_match ("/b/i", $inputStr) !=false){
-		return bDice($inputStr);
 	
 	}
 	else {
