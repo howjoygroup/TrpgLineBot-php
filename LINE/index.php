@@ -198,29 +198,29 @@ function parseInput ($inputStr){
 	if (preg_match ("/dvtest/i", $inputStr)){
 		return DvTest ($inputStr);
 		
-	}else if(preg_match ("/d/i", $inputStr) !=false){
+	}if(preg_match ("/d/i", $inputStr) !=false){
 		return nomalDiceRoller($inputStr);
 		
-	}else if(preg_match ("/^pb/i", $inputStr)){		
+	}if(preg_match ("/^pb/i", $inputStr)){		
 		return pbta($inputStr);				
 		
-	}else if (preg_match ("/^cc/i", $inputStr)){
+	}if (preg_match ("/^cc/i", $inputStr)){
 		return CoC7th($inputStr);
 
-	}else if(stristr($inputStr,$replyKeyword) != false || stristr($inputStr,$replyKeyword2) != false){
+	}if(stristr($inputStr,$replyKeyword) != false || stristr($inputStr,$replyKeyword2) != false){
 		return KeyWordReply($inputStr);		
 		
-	}else if(preg_match ("/b/i", $inputStr) !=false){
+	}if(preg_match ("/b/i", $inputStr) !=false){
 		return bDice($inputStr);		
 		
-	}else if(stristr(strtolower($inputStr),".jpg") != false|| strtolower($inputStr) != false){
+	}if(stristr(strtolower($inputStr),".jpg") != false|| strtolower($inputStr) != false){
 		return SendImg($inputStr);
 		
-	}else if(stristr($inputStr,"mobile") != false){
+	}if(stristr($inputStr,"mobile") != false){
 		return mobile($inputStr);			
 	
 	else {
-		return mahjong($inputStr);
+		return null;
 	}
 }
 function DvTest ($inputStr){
