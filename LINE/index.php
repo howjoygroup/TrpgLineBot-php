@@ -195,11 +195,18 @@ foreach ($bot->parseEvents() as $event) {
 		$keywords = explode(',',$item['gsx$遊戲id']['$t']);
 		foreach($keywords as $keyword){
 			if(mb_strpos($message['text'],$keyword) !== false){
-				$textall="遊戲ID:".$item['gsx$遊戲id']['$t'].
-				"\n本名:".$item['gsx$本名']['$t'].
-				"\n歐付寶ID:".$item['gsx$歐付寶ID']['$t'].
-				"\n代理:".$item['gsx$代理']['$t'];
-				return buildTextMessage($textall);
+				//$textall="遊戲ID:".$item['gsx$遊戲id']['$t'].
+				//"\n本名:".$item['gsx$本名']['$t'].
+				//"\n歐付寶ID:".$item['gsx$歐付寶ID']['$t'].
+				//"\n代理:".$item['gsx$代理']['$t'];
+				$testMessage = new MutiMessage();
+				$replyArr = Array(
+				$testMessage->text('遊戲ID:'.$item['gsx$遊戲id']['$t']),
+				$testMessage->text('\n本名:'.$item['gsx$本名']['$t']),
+				$testMessage->text('\n歐付寶ID:'.$item['gsx$歐付寶ID']['$t']),
+				$testMessage->text('\n代理:'.$item['gsx$代理']['$t']),
+				);
+				return $testMessage->send($replyArr);
 			}
 		}
 	}		
@@ -234,8 +241,6 @@ function parseInput ($inputStr){
 	}if(preg_match ("/b/i", $inputStr) !=false){
 		return bDice($inputStr);
 	
-	}if(preg_match ("/\d/", $inputStr) !=false){
-		return mahjong($inputStr);
 	}
 	else {
 	return null;
