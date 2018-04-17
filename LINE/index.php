@@ -220,19 +220,19 @@ function parseInput ($inputStr){
 	if (preg_match ("/dvtest/i", $inputStr)){
 		return DvTest ($inputStr);
 		
-	}else if (preg_match ("/^cc/i", $inputStr)){
+	}if (preg_match ("/^cc/i", $inputStr)){
 		return CoC7th($inputStr);
 		
-	}else if(preg_match ("/^pb/i", $inputStr)){		
+	}if(preg_match ("/^pb/i", $inputStr)){		
 		return pbta($inputStr);
 		
 	}if(stristr($inputStr,$replyKeyword) != false || stristr($inputStr,$replyKeyword2) != false){
 		return KeyWordReply($inputStr);	
 		
-	}else if(stristr(strtolower($inputStr),".jpg") != false|| strtolower($inputStr) != false){
+	}if(stristr(strtolower($inputStr),".jpg") != false|| strtolower($inputStr) != false){
 		return SendImg($inputStr);
 		
-	}else if(stristr($inputStr,"mobile") != false){
+	}if(stristr($inputStr,"mobile") != false){
 		return mobile($inputStr);			
 		
 	}if(preg_match ("/d/i", $inputStr) !=false){
