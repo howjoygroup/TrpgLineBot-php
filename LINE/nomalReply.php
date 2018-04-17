@@ -138,7 +138,6 @@ function mahjong($inputStr) {
    $textall="查詢失敗";
             $json = file_get_contents('https://spreadsheets.google.com/feeds/list/1heN-wjEuXEfqBXdN8En0WMtfR99pzg7MufiWMMi41U0/1/public/values?alt=json');
             $data = json_decode($json, true);
-		return buildTextMessage("讀json沒問題");
             foreach ($data['feed']['entry'] as $item) {
                 $keywords = explode(',', $item['gsx$遊戲id']['$t']);
 		    return buildTextMessage("第一迴圈沒問題");
