@@ -140,16 +140,16 @@ function mahjong($inputStr) {
             $data = json_decode($json, true);
             foreach ($data['feed']['entry'] as $item) {
                 $keywords = explode(',', $item['gsx$遊戲id']['$t']);
-    foreach ($keywords as $keyword) {
-                  if (mb_strpos($inputStr, $keyword) !== false) {                      
-                     $textall = "遊戲ID：".$item['gsx$遊戲id']['$t'].
-                     "\n本名：".$item['gsx$本名']['$t'].
-                     "\n歐付寶ID：".$item['gsx$歐付寶id']['$t'].
-                     "\n代理：".$item['gsx$代理']['$t'];
-                    }
+   		foreach ($keywords as $keyword) {
+                	if (mb_strpos($inputStr, $keyword) !== false) {                      
+                     		$textall = "遊戲ID：".$item['gsx$遊戲id']['$t'].
+                    		"\n本名：".$item['gsx$本名']['$t'].
+                    		"\n歐付寶ID：".$item['gsx$歐付寶id']['$t'].
+                     		"\n代理：".$item['gsx$代理']['$t'];
+                    	}
                 }
             }
-            return buildTextMessage($textall);
+            return buildTextMessage("測試");
 }
 
 //手機才看得到的訊息。
