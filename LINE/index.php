@@ -217,10 +217,11 @@ function parseInput ($inputStr){
 		return SendImg($inputStr);
 		
 	}if(stristr($inputStr,"mobile") != false){
-		return mobile($inputStr);			
-	
-	}else {
-		return mahjong($inputStr);
+		return mobile($inputStr);
+	}if(preg_match("/^([0-9]+)$/",$inputStr || strlen($inputStr)==6 ){
+ 		return mahjong($inputStr);
+ 	}else {
+		return null;
 	}
 }
 function DvTest ($inputStr){
