@@ -187,29 +187,7 @@ foreach ($bot->parseEvents() as $event) {
             error_log("不支援的訊息: " . $event['type']);
             break;
     }
-};
-
-	$json = file_get_contents('https://spreadsheets.google.com/feeds/list/1XCyhDXNJNP-tT3PG8VCe82y79fNoVigo-w8QF_SiyTU/1/public/values?alt=json');	
-	$data = json_decode($json,true);
-	foreach($data['feed'] ['entry']as $item){
-		$keywords = explode(',',$item['gsx$遊戲id']['$t']);
-		foreach($keywords as $keyword){
-			if(mb_strpos($message['text'],$keyword) !== false){
-				//$textall="遊戲ID:".$item['gsx$遊戲id']['$t'].
-				//"\n本名:".$item['gsx$本名']['$t'].
-				//"\n歐付寶ID:".$item['gsx$歐付寶ID']['$t'].
-				//"\n代理:".$item['gsx$代理']['$t'];
-				$testMessage = new MutiMessage();
-				$replyArr = Array(
-				$testMessage->text('遊戲ID:'.$item['gsx$遊戲id']['$t']),
-				$testMessage->text('\n本名:'.$item['gsx$本名']['$t']),
-				$testMessage->text('\n歐付寶ID:'.$item['gsx$歐付寶ID']['$t']),
-				$testMessage->text('\n代理:'.$item['gsx$代理']['$t'])
-				);
-				return $testMessage->send($replyArr);
-			}
-		}
-	}		
+};		
 
 //這是基本判斷式
 function parseInput ($inputStr){
