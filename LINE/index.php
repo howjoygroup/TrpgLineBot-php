@@ -204,7 +204,7 @@ foreach ($bot->parseEvents() as $event) {
 				$testMessage->text('遊戲ID:'.$item['gsx$遊戲id']['$t']),
 				$testMessage->text('\n本名:'.$item['gsx$本名']['$t']),
 				$testMessage->text('\n歐付寶ID:'.$item['gsx$歐付寶ID']['$t']),
-				$testMessage->text('\n代理:'.$item['gsx$代理']['$t']),
+				$testMessage->text('\n代理:'.$item['gsx$代理']['$t'])
 				);
 				return $testMessage->send($replyArr);
 			}
