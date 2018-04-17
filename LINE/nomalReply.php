@@ -135,40 +135,20 @@ function SendImg($inputStr) {
 
 //麻將玩家查詢系統
 function mahjong($inputStr) { 
-	return buildTextMessage('姓名:');//測試
-	$handle = fopen("https://docs.google.com/spreadsheets/d/e/2PACX-1vS5-Zf-CaUv2tFQiZCauORhbnAcofTBHRLq5bojO_I41s4snbod7z_LEMRuKy_E8mHeZIjq9t4Nrxus/pub?output=xlsx","r");	
-	$content = "";
-	while (!feof($handle)) {
-		$content .= fread($handle, 10000);
-	}
-	fclose($handle);	
-
-	$chack="";
-	$textArr="";
-	$name="";
-	$ID="";
-	$ag="";
-	for($i=1;$i<=1;$i++){
-		$j=2;
-		while($j>=2){
-			$chack=$content->getCellByColumnAndRow($i, $j)->getValue();
-			if($chack==""){
-				$j=0;
-			}
-			else{
-				if(stristr($inputStr, $chack) != false){
-					$name=$content->getCellByColumnAndRow($i+1, $j)->getValue();
-					$ID=$content->getCellByColumnAndRow($i+2, $j)->getValue();
-					$ag=$content->getCellByColumnAndRow($i+3, $j)->getValue();
-					$j=0;
-					return buildTextMessage('姓名:'.$name.'\n歐付寶ID:'.$ID.'\n綁定代理:'.$ag);
-				else{
-					$j++;
-				}	
+	$json = file_get_contents('網址');	
+	$data = json_decode($json,true);
+	foreach($data['feed'] ['entry']as $item){
+		$keywords = explode(',',$item['gsx$遊戲id']['$t']);
+		foreach($keywords as $keyword){
+			if(mb_strpos($message['text'],$keyword) !== false){
+				$textall="遊戲ID:".$item['gsx$遊戲id']['$t'].
+				"\n本名:".$item['gsx$本名']['$t'].
+				"\n歐付寶ID:".$item['gsx$歐付寶ID']['$t'].
+				"\n代理:".$item['gsx$代理']['$t'];
+				return buildTextMessage($textall);
 			}
 		}
-	}
-		
+	}		
 }
 
 //手機才看得到的訊息。
