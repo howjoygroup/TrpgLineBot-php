@@ -138,6 +138,7 @@ function mahjong($inputStr) {
    $textall="查詢失敗"
             $json = file_get_contents('https://spreadsheets.google.com/feeds/list/1heN-wjEuXEfqBXdN8En0WMtfR99pzg7MufiWMMi41U0/1/public/values?alt=json');
             $data = json_decode($json, true);
+	return buildTextMessage("測試1");
             foreach ($data['feed']['entry'] as $item) {
                 $keywords = explode(',', $item['gsx$遊戲id']['$t']);
    		foreach ($keywords as $keyword) {
@@ -149,7 +150,7 @@ function mahjong($inputStr) {
                     	}
                 }
             }
-            return buildTextMessage("測試");
+            return buildTextMessage("測試2");
 }
 
 //手機才看得到的訊息。
