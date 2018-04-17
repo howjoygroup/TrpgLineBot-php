@@ -219,7 +219,7 @@ function parseInput ($inputStr){
 	}if(stristr($inputStr,"mobile") != false){
 		return mobile($inputStr);			
 	
-	else {
+	}else {
 		return null;
 	}
 }
