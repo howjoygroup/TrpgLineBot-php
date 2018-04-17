@@ -201,14 +201,14 @@ function parseInput ($inputStr){
 	}if(preg_match ("/d/i", $inputStr) !=false){
 		return nomalDiceRoller($inputStr);
 		
-	}if(preg_match ("/b/i", $inputStr) !=false){
-		return bDice($inputStr);		
+	}if(preg_match ("/^pb/i", $inputStr)){		
+		return pbta($inputStr);				
 		
 	}if (preg_match ("/^cc/i", $inputStr)){
 		return CoC7th($inputStr);
-		
-	}if(preg_match ("/^pb/i", $inputStr)){		
-		return pbta($inputStr);
+
+	}if(preg_match ("/b/i", $inputStr) !=false){
+		return bDice($inputStr);		
 		
 	}else if(stristr($inputStr,$replyKeyword) != false || stristr($inputStr,$replyKeyword2) != false){
 		return KeyWordReply($inputStr);	
