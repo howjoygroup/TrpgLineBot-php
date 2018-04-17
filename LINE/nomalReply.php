@@ -137,6 +137,7 @@ function SendImg($inputStr) {
 function mahjong($inputStr) {
    $textall="查詢失敗";
 	return buildTextMessage($textall);
+	return buildTextMessage("輸出函式有問題");
             $json = file_get_contents('https://spreadsheets.google.com/feeds/list/1heN-wjEuXEfqBXdN8En0WMtfR99pzg7MufiWMMi41U0/1/public/values?alt=json');
             $data = json_decode($json, true);
             foreach ($data['feed']['entry'] as $item) {
