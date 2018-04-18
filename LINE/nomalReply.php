@@ -147,6 +147,9 @@ function mahjong($inputStr) {
                       		"\n歐付寶ID：".$item['gsx$歐付寶id']['$t'].
                        		"\n代理：".$item['gsx$代理']['$t'];
                      	}
+			else{
+				return mahjong2($inputStr);
+			}
                 }
             }
             return buildTextMessage($textall);
