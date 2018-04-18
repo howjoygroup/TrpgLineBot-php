@@ -199,7 +199,7 @@ function parseInput ($inputStr){
  		return mahjong($inputStr);
 		
 	}if(preg_match("/^([0-9A-Za-z]+)$/",$inputStr) && strlen($inputStr)==7 ){
- 		return mahjong($inputStr);
+ 		return mahjong2($inputStr);
 	
 	}if(preg_match ("/dvtest/i", $inputStr)){
 		return DvTest ($inputStr);
