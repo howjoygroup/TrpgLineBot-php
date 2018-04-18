@@ -153,7 +153,7 @@ function mahjong($inputStr) {
 }
 
 function mahjong2($inputStr) {
-      $textall="查詢失敗";
+      $textall="查無此人";
             $json = file_get_contents('https://spreadsheets.google.com/feeds/list/1Z5YggH8y_f0_T46_yxLs9dc1cDgSaxBcANjA4UKFnfI/1/public/values?alt=json');
             $data = json_decode($json, true);
             foreach ($data['feed']['entry'] as $item) {
