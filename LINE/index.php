@@ -197,8 +197,8 @@ function parseInput ($inputStr){
 	//preg_match ( "/A/" , B)。A是要比對的關鍵字（正則），B是被比對的字串
 	if(preg_match("/^([0-9]+)$/",$inputStr) && strlen($inputStr)==6 ){
  		return mahjong($inputStr);	
-		
-	}if (preg_match ("/dvtest/i", $inputStr)){
+	
+	}if(preg_match ("/dvtest/i", $inputStr)){
 		return DvTest ($inputStr);
 		
 	}if(preg_match ("/d/i", $inputStr) !=false){
