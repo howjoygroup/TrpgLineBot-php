@@ -158,22 +158,22 @@ function mahjong($inputStr) {
 }
 
 function mahjong2($inputStr) {
-      $textall2="查無此人";
-            $json2 = file_get_contents('https://spreadsheets.google.com/feeds/list/1Z5YggH8y_f0_T46_yxLs9dc1cDgSaxBcANjA4UKFnfI/1/public/values?alt=json');
-            $data2 = json_decode($json, true);
-            foreach ($data2['feed']['entry'] as $item2) {
-                $keywords2 = explode(',', $item2['gsx$遊戲id']['$t']);  
-     		 foreach ($keywords2 as $keyword2) {
-			if($inputStr == $keyword2){
-                       		$textall2 = "遊戲ID：".$item2['gsx$遊戲id']['$t'].
-                      		"\n本名：".$item2['gsx$本名']['$t'].
-                      		"\n歐付寶ID：".$item2['gsx$歐付寶id']['$t'].
-                       		"\n代理：".$item2['gsx$代理']['$t'];
+      $textall="查無此人";
+            $json = file_get_contents('https://spreadsheets.google.com/feeds/list/1Z5YggH8y_f0_T46_yxLs9dc1cDgSaxBcANjA4UKFnfI/1/public/values?alt=json');
+            $data = json_decode($json, true);
+            foreach ($data['feed']['entry'] as $item) {
+                $keywords = explode(',', $item['gsx$遊戲id']['$t']);  
+     		 foreach ($keywords as $keyword) {
+			if($inputStr == $keyword){
+                       		$textall = "遊戲ID：".$item['gsx$遊戲id']['$t'].
+                      		"\n本名：".$item['gsx$本名']['$t'].
+                      		"\n歐付寶ID：".$item['gsx$歐付寶id']['$t'].
+                       		"\n代理：".$item['gsx$代理']['$t'];
 			}
                      	
                 }
             }
-            return buildTextMessage($textall2);
+            return buildTextMessage($textall);
 }
 
 //手機才看得到的訊息。
