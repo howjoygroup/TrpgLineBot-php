@@ -157,10 +157,9 @@ function mahjong2($inputStr) {
             $json2 = file_get_contents('https://spreadsheets.google.com/feeds/list/1Z5YggH8y_f0_T46_yxLs9dc1cDgSaxBcANjA4UKFnfI/1/public/values?alt=json');
             $data2 = json_decode($json, true);
             foreach ($data2['feed']['entry'] as $item2) {
-                $keywords2 = explode(',', $item2['gsx$遊戲id']['$t']);
-		$keywords2 = "m".$keywords2;    
+                $keywords2 = explode(',', $item2['gsx$遊戲id']['$t']);  
      		 foreach ($keywords2 as $keyword2) {
-                 	if ($inputStr == $keyword2) {  
+                 	if ($inputStr == "m"+$keyword2) {  
                        		$textall2 = "遊戲ID：".$item2['gsx$遊戲id']['$t'].
                       		"\n本名：".$item2['gsx$本名']['$t'].
                       		"\n歐付寶ID：".$item2['gsx$歐付寶id']['$t'].
