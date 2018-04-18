@@ -1,30 +1,3 @@
-# 骰子狗：開放原始碼的LINE骰子機器人
-
-關於骰子狗
-==
-骰子狗是一個開放源碼的line骰子機器人計畫，前身是「機器鴨霸獸」。  最早由作者的強者同學（LarryLo）提供基礎原始碼支援。而後幾經開發成為機器鴨霸獸。  
-
-然而此時的機器鴨霸獸是以JavaScript寫成，在外連的支援度以及程式碼的分拆上都遇到困難（其實只是我能力不足）。幾經權衡之後決定以php語言重新寫成，並參考網路上的文章後使用linebot的簡易api（參考資料於文末）。
-
-骰子狗並非想要成為一個全功能的骰子機器人，而是希望成為一個引玉的磚頭。也希望能夠成為對開發Line機器人有興趣的人的一塊拍門磚。  
-
-事實上骰子狗是建立在Heroku的免費伺服器上，其每個月的運轉額度有限，在月底的時候可能會有額度消耗殆盡而終止服務的可能……所以，自己按照下面的教程，客制化做一個自己的LINEBOT吧！
-</br></br></br>
-
-試用骰子狗
-==
-骰子狗的LineID是：@upl5593r  
-你也可以使用QR扣：  
-![QR](http://i.imgur.com/IpTpfij.png)  
-
-或是點這裡：<a href="https://line.me/R/ti/p/%40upl5593r"><img height="36" border="0" alt="加入好友" src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png"></a>
-</br></br></br>
-
-特色介紹
-==
-![特色介紹](http://i.imgur.com/xvcqFtO.jpg)
-
-
 如何建立自己的Line骰子機器人
 ==
 
@@ -126,8 +99,3 @@ Chatbot 開發指南：使用 LINE Bot PHP SDK 打造問答型聊天機器人</b
 
 使用PHP+Heroku快速打造Linebot回話機器人</br>
 [http://www.chy.tw/2017/08/phpherokulinebot.html](http://www.chy.tw/2017/08/phpherokulinebot.html)</br>
-
-感謝強者我同學（LarryLo）在最開始開發鴨霸獸的協助</br>
-感謝悠子（victor324）開放的原始碼</br>
-
-願一切榮耀歸于　李孟儒
