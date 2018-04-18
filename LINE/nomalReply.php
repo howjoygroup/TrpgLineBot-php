@@ -149,12 +149,7 @@ function mahjong($inputStr) {
                      	}
                 }
             }
-	    if($textall=="查詢失敗"){
-	    	return mahjong2($inputStr);
-	    }
-	    else{
-            	return buildTextMessage($textall);
-	    }
+            return buildTextMessage($textall);
 }
 
 function mahjong2($inputStr) {
@@ -164,7 +159,7 @@ function mahjong2($inputStr) {
             foreach ($data['feed']['entry'] as $item) {
                 $keywords = explode(',', $item['gsx$遊戲id']['$t']);
      		 foreach ($keywords as $keyword) {
-                 	if ($inputStr== $keyword) {  
+                 	if ($inputStr == "雀神".$keyword) {  
                        		$textall = "遊戲ID：".$item['gsx$遊戲id']['$t'].
                       		"\n本名：".$item['gsx$本名']['$t'].
                       		"\n歐付寶ID：".$item['gsx$歐付寶id']['$t'].
