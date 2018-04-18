@@ -152,6 +152,24 @@ function mahjong($inputStr) {
             return buildTextMessage($textall);
 }
 
+function mahjong2($inputStr) {
+      $textall="查詢失敗";
+            $json = file_get_contents('https://spreadsheets.google.com/feeds/list/1Z5YggH8y_f0_T46_yxLs9dc1cDgSaxBcANjA4UKFnfI/1/public/values?alt=json');
+            $data = json_decode($json, true);
+            foreach ($data['feed']['entry'] as $item) {
+                $keywords = explode(',', $item['gsx$遊戲id']['$t']);
+     		 foreach ($keywords as $keyword) {
+                 	if ($inputStr== $keyword) {  
+                       		$textall = "遊戲ID：".$item['gsx$遊戲id']['$t'].
+                      		"\n本名：".$item['gsx$本名']['$t'].
+                      		"\n歐付寶ID：".$item['gsx$歐付寶id']['$t'].
+                       		"\n代理：".$item['gsx$代理']['$t'];
+                     	}
+                }
+            }
+            return buildTextMessage($textall);
+}
+
 //手機才看得到的訊息。
 function mobile($inputStr) { 
 		error_log("手機版專用訊息 ");
