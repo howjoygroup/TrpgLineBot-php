@@ -158,9 +158,8 @@ function mahjong2($inputStr) {
             $data2 = json_decode($json, true);
             foreach ($data2['feed']['entry'] as $item2) {
                 $keywords2 = explode(',', $item2['gsx$遊戲id']['$t']);
+		$keywords2 = "m".$keywords2;    
      		 foreach ($keywords2 as $keyword2) {
-			 return buildTextMessage($keyword2);
-			$keyword2 = "m"+$keyword2; 
                  	if ($inputStr == $keyword2) {  
                        		$textall2 = "遊戲ID：".$item2['gsx$遊戲id']['$t'].
                       		"\n本名：".$item2['gsx$本名']['$t'].
@@ -169,7 +168,7 @@ function mahjong2($inputStr) {
                      	}
                 }
             }
-            return buildTextMessage($keyword2);
+            return buildTextMessage($keywords2);
 }
 
 //手機才看得到的訊息。
