@@ -199,9 +199,7 @@ function parseInput ($inputStr){
 	if(preg_match("/^([0-9]+)$/",$inputStr) && strlen($inputStr)==6 ){
  		return mahjong($inputStr);	
 	
-	}if(strlen($inputStr)<=4 ){
- 		return mahjong3($inputStr);	//押金
-	}	
+	
 		
 	}if(preg_match ("/dvtest/i", $inputStr)){
 		return DvTest ($inputStr);
