@@ -174,7 +174,7 @@ function mahjong3($inputStr) {
                 }
             }
 	    if($textall=="查詢失敗"){
-	    	return null;
+	    	return buildTextMessage($textall);
 	    }
 	    else{
             	return buildTextMessage($textall);
