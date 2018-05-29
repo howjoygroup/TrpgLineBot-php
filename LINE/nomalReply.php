@@ -157,6 +157,30 @@ function mahjong($inputStr) {
 	    }
 }
 
+//麻將玩家押金查詢系統
+function mahjong3($inputStr) {
+      $textall="查詢失敗";
+            $json = file_get_contents('https://spreadsheets.google.com/feeds/list/1V-pdSGX-z6baGvqR4sJaV_q7IpjYn9o5T5xnya2_Gxk/1/public/values?alt=json');
+            $data = json_decode($json, true);
+            foreach ($data['feed']['entry'] as $item) {
+                $keywords = explode(',', $item['gsx$本名']['$t']);
+     		 foreach ($keywords as $keyword) {
+                 	if ($inputStr== $keyword) {  
+                       		$textall = "本名：".$item['gsx$本名']['$t'].
+                      		"\n歐付寶ID：".$item['gsx$歐付寶id']['$t'].
+                       		"\n繳交押金：".$item['gsx$繳交押金']['$t'].
+				"\n上傳繳押金的截圖證明：".$item['gsx$上傳繳押金的截圖證明']['$t'];
+                     	}
+                }
+            }
+	    if($textall=="查詢失敗"){
+	    	return null;
+	    }
+	    else{
+            	return buildTextMessage($textall);
+	    }
+}
+
 function mahjong2($inputStr) {
             $json = file_get_contents('https://spreadsheets.google.com/feeds/list/1Z5YggH8y_f0_T46_yxLs9dc1cDgSaxBcANjA4UKFnfI/1/public/values?alt=json');
             $data = json_decode($json, true);
