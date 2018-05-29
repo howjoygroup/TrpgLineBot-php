@@ -160,7 +160,7 @@ function mahjong($inputStr) {
 //麻將玩家押金查詢系統
 function mahjong3($inputStr) {
       $textall="查詢失敗";
-	return buildTextMessage($textall);
+
             $json = file_get_contents('https://spreadsheets.google.com/feeds/list/1V-pdSGX-z6baGvqR4sJaV_q7IpjYn9o5T5xnya2_Gxk/1/public/values?alt=json');
             $data = json_decode($json, true);
             foreach ($data['feed']['entry'] as $item) {
