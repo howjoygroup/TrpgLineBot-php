@@ -197,10 +197,7 @@ function parseInput ($inputStr){
 	error_log("訊息【".$inputStr."】進入parseInput");
 	//preg_match ( "/A/" , B)。A是要比對的關鍵字（正則），B是被比對的字串
 	if(preg_match("/^([0-9]+)$/",$inputStr) && strlen($inputStr)==6 ){
- 		return mahjong($inputStr);	
-	
-	}if(preg_match("/^([\x7f-\xff]+)$/",$inputStr) !=false){
- 		return mahjong3($inputStr);	//押金	
+ 		return mahjong($inputStr);		
 		
 	}if(preg_match ("/dvtest/i", $inputStr)){
 		return DvTest ($inputStr);
@@ -215,7 +212,10 @@ function parseInput ($inputStr){
 		return CoC7th($inputStr);
 
 	}if(stristr($inputStr,$replyKeyword) != false || stristr($inputStr,$replyKeyword2) != false || stristr($inputStr,$replyKeyword3) != false){
-		return KeyWordReply($inputStr);		
+		return KeyWordReply($inputStr);	
+		
+	}if(preg_match("/^([\x7f-\xff]+)$/",$inputStr) !=false){
+ 		return mahjong3($inputStr);	//押金
 		
 	}if(preg_match ("/b/i", $inputStr) !=false){
 		return bDice($inputStr);		
