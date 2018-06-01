@@ -176,7 +176,8 @@ function mahjong3($inputStr) {
             }
 	    if($textall=="查詢失敗" && stristr($inputStr,$replyKeyword) != false){
 	    	return KeyWordReply($inputStr);
-		    
+	    }else if($textall=="查詢失敗" && strtolower($inputStr) != false){
+		return SendImg($inputStr);  
 	    }else if($textall=="查詢失敗"){
 	    	return null;
 	    }else{
