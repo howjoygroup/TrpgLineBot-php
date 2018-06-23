@@ -193,6 +193,7 @@ foreach ($bot->parseEvents() as $event) {
 function parseInput ($inputStr){
 	$replyKeyword = '秘書';
 	$replyKeyword2 = '新朋友';
+	$replyKeyword3 = '至尊臺灣麻將';
 	error_log("訊息【".$inputStr."】進入parseInput");
 	//preg_match ( "/A/" , B)。A是要比對的關鍵字（正則），B是被比對的字串
 	if(preg_match("/^([0-9]+)$/",$inputStr) && strlen($inputStr)==6 ){
@@ -210,7 +211,7 @@ function parseInput ($inputStr){
 	}if (preg_match ("/^cc/i", $inputStr)){
 		return CoC7th($inputStr);
 
-	}if(stristr($inputStr,$replyKeyword) != false || stristr($inputStr,$replyKeyword2) != false ){
+	}if(stristr($inputStr,$replyKeyword) != false || stristr($inputStr,$replyKeyword2) != false  || stristr($inputStr,$replyKeyword3) != false){
 		return KeyWordReply($inputStr);	
 		
 	}if(preg_match("/^([\x7f-\xff]+)$/",$inputStr) !=false){
