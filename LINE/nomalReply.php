@@ -35,9 +35,12 @@ function KeyWordReply($inputStr) {
 		return buildTextMessage($reply);
 	}
 	if(stristr($inputStr, '必須自摸') != false || stristr($inputStr, '必須報聽') != false) {
-		
-
-		return buildTextMessage($reply);
+		$testMessage = new MutiMessage();
+		$replyArr = Array(
+		$testMessage->text('此百底群禁止創房設定以下選項'),
+		$testMessage->img('https://i.imgur.com/2HYzCFs.jpg'),
+		);
+		return $testMessage->send($replyArr);
 	}
 	
 			
