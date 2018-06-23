@@ -34,6 +34,11 @@ function KeyWordReply($inputStr) {
 		
 		return buildTextMessage($reply);
 	}
+	if(stristr($inputStr, '必須自摸') != false || stristr($inputStr, '必須報聽') != false) {
+		
+
+		return buildTextMessage($reply);
+	}
 	
 			
 	foreach($manual as $systems){
@@ -175,6 +180,10 @@ function mahjong3($inputStr) {
                 }
             }
 	    if($textall=="查詢失敗" && stristr($inputStr,$replyKeyword) != false){
+	    	return KeyWordReply($inputStr);
+	    }else if($textall=="查詢失敗" && stristr($inputStr,$replyKeyword2) != false){
+	    	return KeyWordReply($inputStr);
+	    }else if($textall=="查詢失敗" && stristr($inputStr,$replyKeyword3) != false){
 	    	return KeyWordReply($inputStr);
 	    }else if($textall=="查詢失敗" && strtolower($inputStr) != false){
 		return SendImg($inputStr);  
