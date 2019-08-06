@@ -169,7 +169,7 @@ foreach ($bot->parseEvents() as $event) {
 			error_log("被加入好友");
 			$messages = new MutiMessage();
 			$replyArr = Array(
-				$messages->text("大家好，我是宏豪的秘書。"),
+				$messages->text("大家好，我是又熙的秘書。"),
 				$messages->text("請輸入「秘書說明」獲得使用說明～"),
 				$messages->sticker(4,631),
 				$messages->text("建議使用手機界面，可以更簡單的選取說明哦。")
